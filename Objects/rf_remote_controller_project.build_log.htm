@@ -27,10 +27,13 @@ Project File Date:  03/08/2026
 <h2>Output:</h2>
 *** Using Compiler 'V6.23', folder: 'C:\Users\user\AppData\Local\Keil_v5\ARM\ARMCLANG\Bin'
 Rebuild target 'stm32f401rct6'
-assembling startup_stm32f401xc.s...
+compiling i2c1.c...
+compiling gpio.c...
 compiling main.c...
 compiling system_stm32f4xx.c...
-compiling gpio.c...
+compiling app.c...
+assembling startup_stm32f401xc.s...
+compiling debug.c...
 rcc.c(94): warning: implicit conversion from 'int' to 'uint8_t' (aka 'unsigned char') changes value from 1024 to 0 [-Wconstant-conversion]
    94 |         {1,1,1,1,2,4,8,16,64,128,256,512,1024,1024,1024,1024};
       |         ~                                               ^~~~
@@ -51,10 +54,9 @@ rcc.c(94): warning: implicit conversion from 'int' to 'uint8_t' (aka 'unsigned c
       |         ~                        ^~~
 6 warnings generated.
 compiling rcc.c...
-compiling debug.c...
 compiling timebase.c...
 linking...
-Program Size: Code=5824 RO-data=468 RW-data=0 ZI-data=2576  
+Program Size: Code=5874 RO-data=466 RW-data=0 ZI-data=2576  
 ".\Objects\rf_remote_controller_project.axf" - 0 Error(s), 6 Warning(s).
 
 <h2>Software Packages used:</h2>
@@ -81,12 +83,12 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE@6.1.1
 
    * Component: Keil::Device:Startup@2.6.3
+      Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/system_stm32f4xx.c
       Source file:   MDK/Device/Source/ARM/STM32F401xx_OPT.s
+      Include file:  Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
       Source file:   MDK/Device/Source/ARM/STM32F4xx_OTP.s
       Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/arm/startup_stm32f401xc.s
-      Include file:  Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
-      Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/system_stm32f4xx.c
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:00
 </pre>
 </body>
 </html>

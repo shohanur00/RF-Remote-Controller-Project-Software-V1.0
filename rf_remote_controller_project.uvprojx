@@ -409,6 +409,16 @@
               <FileType>1</FileType>
               <FilePath>.\timebase.c</FilePath>
             </File>
+            <File>
+              <FileName>app.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\app.c</FilePath>
+            </File>
+            <File>
+              <FileName>i2c1.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\i2c1.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -433,6 +443,16 @@
               <FileName>timebase.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\timebase.h</FilePath>
+            </File>
+            <File>
+              <FileName>app.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\app.h</FilePath>
+            </File>
+            <File>
+              <FileName>i2c1.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\i2c1.h</FilePath>
             </File>
           </Files>
         </Group>
