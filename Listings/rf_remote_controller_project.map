@@ -1,4 +1,4 @@
-Component: Arm Compiler for Embedded 6.24 Tool: armlink [5f371500]
+Component: Arm Compiler for Embedded 6.23 Tool: armlink [5f102400]
 
 ==============================================================================
 
@@ -6,12 +6,16 @@ Section Cross References
 
     main.o(.text.main) refers to rcc.o(.text.RCC_HSE_Clock_Config) for RCC_HSE_Clock_Config
     main.o(.text.main) refers to rcc.o(.text.RCC_LSE_Clock_Config) for RCC_LSE_Clock_Config
+    main.o(.text.main) refers to timebase.o(.text.Timebase_Init) for Timebase_Init
     main.o(.text.main) refers to debug.o(.text.Debug_Init) for Debug_Init
     main.o(.text.main) refers to gpio.o(.text.GPIO_EnableClock) for GPIO_EnableClock
     main.o(.text.main) refers to gpio.o(.text.GPIO_Init) for GPIO_Init
+    main.o(.text.main) refers to timebase.o(.text.Timebase_DownCounter_SS_Set_Securely) for Timebase_DownCounter_SS_Set_Securely
     main.o(.text.main) refers to gpio.o(.text.GPIO_ResetPin) for GPIO_ResetPin
+    main.o(.text.main) refers to timebase.o(.text.Timebase_DownCounter_SS_Continuous_Expired_Event) for Timebase_DownCounter_SS_Continuous_Expired_Event
     main.o(.text.main) refers to main.o(.rodata.str1.1) for .L.str
     main.o(.text.main) refers to debug.o(.text.Debug_Tx_Text_NL) for Debug_Tx_Text_NL
+    main.o(.text.main) refers to timebase.o(.text.Timebase_Main_Loop_Executables) for Timebase_Main_Loop_Executables
     main.o(.ARM.exidx.text.main) refers to main.o(.text.main) for [Anonymous Symbol]
     gpio.o(.ARM.exidx.text.GPIO_EnableClock) refers to gpio.o(.text.GPIO_EnableClock) for [Anonymous Symbol]
     gpio.o(.ARM.exidx.text.GPIO_Init) refers to gpio.o(.text.GPIO_Init) for [Anonymous Symbol]
@@ -186,12 +190,307 @@ Section Cross References
     debug.o(.text.Debug_Init) refers to debug.o(.text.Debug_Reg_Init) for Debug_Reg_Init
     debug.o(.text.Debug_Init) refers to debug.o(.text.Debug_Timer_Init) for Debug_Timer_Init
     debug.o(.ARM.exidx.text.Debug_Init) refers to debug.o(.text.Debug_Init) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_Struct_Init) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.text.Timebase_Struct_Init) refers to timebase.o(.bss.Timebase_type) for Timebase_type
+    timebase.o(.ARM.exidx.text.Timebase_Struct_Init) refers to timebase.o(.text.Timebase_Struct_Init) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_Timer_Enable) refers to rcc.o(.text.RCC_Get_APB2_Clock) for RCC_Get_APB2_Clock
+    timebase.o(.text.Timebase_Timer_Enable) refers to timebase.o(.text.__NVIC_SetPriority) for __NVIC_SetPriority
+    timebase.o(.text.Timebase_Timer_Enable) refers to timebase.o(.text.__NVIC_EnableIRQ) for __NVIC_EnableIRQ
+    timebase.o(.text.Timebase_Timer_Enable) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.ARM.exidx.text.Timebase_Timer_Enable) refers to timebase.o(.text.Timebase_Timer_Enable) for [Anonymous Symbol]
+    timebase.o(.ARM.exidx.text.__NVIC_SetPriority) refers to timebase.o(.text.__NVIC_SetPriority) for [Anonymous Symbol]
+    timebase.o(.ARM.exidx.text.__NVIC_EnableIRQ) refers to timebase.o(.text.__NVIC_EnableIRQ) for [Anonymous Symbol]
+    timebase.o(.ARM.exidx.text.Timebase_Timer_Disable) refers to timebase.o(.text.Timebase_Timer_Disable) for [Anonymous Symbol]
+    timebase.o(.ARM.exidx.text.Timebase_Atomic_Operation_Start) refers to timebase.o(.text.Timebase_Atomic_Operation_Start) for [Anonymous Symbol]
+    timebase.o(.ARM.exidx.text.Timebase_Atomic_Operation_End) refers to timebase.o(.text.Timebase_Atomic_Operation_End) for [Anonymous Symbol]
+    timebase.o(.text.TIM1_TRG_COM_TIM11_IRQHandler) refers to timebase.o(.text.Timebase_ISR_Executables) for Timebase_ISR_Executables
+    timebase.o(.ARM.exidx.text.TIM1_TRG_COM_TIM11_IRQHandler) refers to timebase.o(.text.TIM1_TRG_COM_TIM11_IRQHandler) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_ISR_Executables) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.ARM.exidx.text.Timebase_ISR_Executables) refers to timebase.o(.text.Timebase_ISR_Executables) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_Timer_Get_SubSecondsShadow) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.ARM.exidx.text.Timebase_Timer_Get_SubSecondsShadow) refers to timebase.o(.text.Timebase_Timer_Get_SubSecondsShadow) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_Timer_Get_SecondsUpTime) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.ARM.exidx.text.Timebase_Timer_Get_SecondsUpTime) refers to timebase.o(.text.Timebase_Timer_Get_SecondsUpTime) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_Timer_Get_SecondsShadow) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.ARM.exidx.text.Timebase_Timer_Get_SecondsShadow) refers to timebase.o(.text.Timebase_Timer_Get_SecondsShadow) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_Timer_Get_SubSeconds) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.ARM.exidx.text.Timebase_Timer_Get_SubSeconds) refers to timebase.o(.text.Timebase_Timer_Get_SubSeconds) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_Timer_Get_Seconds) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.ARM.exidx.text.Timebase_Timer_Get_Seconds) refers to timebase.o(.text.Timebase_Timer_Get_Seconds) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_Timer_Set_SubSeconds) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.ARM.exidx.text.Timebase_Timer_Set_SubSeconds) refers to timebase.o(.text.Timebase_Timer_Set_SubSeconds) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_Timer_Set_SubSecondsShadow) refers to timebase.o(.text.Timebase_Atomic_Operation_Start) for Timebase_Atomic_Operation_Start
+    timebase.o(.text.Timebase_Timer_Set_SubSecondsShadow) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.text.Timebase_Timer_Set_SubSecondsShadow) refers to timebase.o(.text.Timebase_Atomic_Operation_End) for Timebase_Atomic_Operation_End
+    timebase.o(.ARM.exidx.text.Timebase_Timer_Set_SubSecondsShadow) refers to timebase.o(.text.Timebase_Timer_Set_SubSecondsShadow) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_Timer_Set_SubSecondsUpTime) refers to timebase.o(.text.Timebase_Atomic_Operation_Start) for Timebase_Atomic_Operation_Start
+    timebase.o(.text.Timebase_Timer_Set_SubSecondsUpTime) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.text.Timebase_Timer_Set_SubSecondsUpTime) refers to timebase.o(.text.Timebase_Atomic_Operation_End) for Timebase_Atomic_Operation_End
+    timebase.o(.ARM.exidx.text.Timebase_Timer_Set_SubSecondsUpTime) refers to timebase.o(.text.Timebase_Timer_Set_SubSecondsUpTime) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_Timer_Set_Seconds) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.ARM.exidx.text.Timebase_Timer_Set_Seconds) refers to timebase.o(.text.Timebase_Timer_Set_Seconds) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_Timer_Get_SubSecondsShadow_Securely) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.ARM.exidx.text.Timebase_Timer_Get_SubSecondsShadow_Securely) refers to timebase.o(.text.Timebase_Timer_Get_SubSecondsShadow_Securely) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_Timer_Get_SubSecondsUpTime_Securely) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.ARM.exidx.text.Timebase_Timer_Get_SubSecondsUpTime_Securely) refers to timebase.o(.text.Timebase_Timer_Get_SubSecondsUpTime_Securely) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_Timer_Get_SecondsShadow_Securely) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.ARM.exidx.text.Timebase_Timer_Get_SecondsShadow_Securely) refers to timebase.o(.text.Timebase_Timer_Get_SecondsShadow_Securely) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_Timer_Sync_With_Shadow_Variables) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.text.Timebase_Timer_Sync_With_Shadow_Variables) refers to timebase.o(.text.Timebase_Atomic_Operation_Start) for Timebase_Atomic_Operation_Start
+    timebase.o(.text.Timebase_Timer_Sync_With_Shadow_Variables) refers to timebase.o(.text.Timebase_Atomic_Operation_End) for Timebase_Atomic_Operation_End
+    timebase.o(.ARM.exidx.text.Timebase_Timer_Sync_With_Shadow_Variables) refers to timebase.o(.text.Timebase_Timer_Sync_With_Shadow_Variables) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_Timer_Delay_SubSeconds) refers to timebase.o(.text.Timebase_Atomic_Operation_Start) for Timebase_Atomic_Operation_Start
+    timebase.o(.text.Timebase_Timer_Delay_SubSeconds) refers to timebase.o(.text.Timebase_Timer_Get_SubSecondsShadow) for Timebase_Timer_Get_SubSecondsShadow
+    timebase.o(.text.Timebase_Timer_Delay_SubSeconds) refers to timebase.o(.text.Timebase_Timer_Get_SecondsShadow) for Timebase_Timer_Get_SecondsShadow
+    timebase.o(.text.Timebase_Timer_Delay_SubSeconds) refers to timebase.o(.text.Timebase_Atomic_Operation_End) for Timebase_Atomic_Operation_End
+    timebase.o(.text.Timebase_Timer_Delay_SubSeconds) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.ARM.exidx.text.Timebase_Timer_Delay_SubSeconds) refers to timebase.o(.text.Timebase_Timer_Delay_SubSeconds) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_Timer_Await_SubSeconds) refers to timebase.o(.text.Timebase_Atomic_Operation_Start) for Timebase_Atomic_Operation_Start
+    timebase.o(.text.Timebase_Timer_Await_SubSeconds) refers to timebase.o(.text.Timebase_Timer_Get_SubSecondsShadow) for Timebase_Timer_Get_SubSecondsShadow
+    timebase.o(.text.Timebase_Timer_Await_SubSeconds) refers to timebase.o(.text.Timebase_Atomic_Operation_End) for Timebase_Atomic_Operation_End
+    timebase.o(.text.Timebase_Timer_Await_SubSeconds) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.ARM.exidx.text.Timebase_Timer_Await_SubSeconds) refers to timebase.o(.text.Timebase_Timer_Await_SubSeconds) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_Timer_Delay_Seconds) refers to timebase.o(.text.Timebase_Atomic_Operation_Start) for Timebase_Atomic_Operation_Start
+    timebase.o(.text.Timebase_Timer_Delay_Seconds) refers to timebase.o(.text.Timebase_Timer_Get_SecondsShadow) for Timebase_Timer_Get_SecondsShadow
+    timebase.o(.text.Timebase_Timer_Delay_Seconds) refers to timebase.o(.text.Timebase_Atomic_Operation_End) for Timebase_Atomic_Operation_End
+    timebase.o(.ARM.exidx.text.Timebase_Timer_Delay_Seconds) refers to timebase.o(.text.Timebase_Timer_Delay_Seconds) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_Window_Timer_Reset) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.ARM.exidx.text.Timebase_Window_Timer_Reset) refers to timebase.o(.text.Timebase_Window_Timer_Reset) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_Window_Timer_Start) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.text.Timebase_Window_Timer_Start) refers to timebase.o(.text.Timebase_Atomic_Operation_Start) for Timebase_Atomic_Operation_Start
+    timebase.o(.text.Timebase_Window_Timer_Start) refers to timebase.o(.text.Timebase_Timer_Get_SecondsShadow) for Timebase_Timer_Get_SecondsShadow
+    timebase.o(.text.Timebase_Window_Timer_Start) refers to timebase.o(.text.Timebase_Timer_Get_SubSecondsShadow) for Timebase_Timer_Get_SubSecondsShadow
+    timebase.o(.text.Timebase_Window_Timer_Start) refers to timebase.o(.text.Timebase_Atomic_Operation_End) for Timebase_Atomic_Operation_End
+    timebase.o(.ARM.exidx.text.Timebase_Window_Timer_Start) refers to timebase.o(.text.Timebase_Window_Timer_Start) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_Window_Timer_Get_Interval) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.text.Timebase_Window_Timer_Get_Interval) refers to timebase.o(.text.Timebase_Atomic_Operation_Start) for Timebase_Atomic_Operation_Start
+    timebase.o(.text.Timebase_Window_Timer_Get_Interval) refers to timebase.o(.text.Timebase_Timer_Get_SecondsShadow) for Timebase_Timer_Get_SecondsShadow
+    timebase.o(.text.Timebase_Window_Timer_Get_Interval) refers to timebase.o(.text.Timebase_Timer_Get_SubSecondsShadow) for Timebase_Timer_Get_SubSecondsShadow
+    timebase.o(.text.Timebase_Window_Timer_Get_Interval) refers to timebase.o(.text.Timebase_Atomic_Operation_End) for Timebase_Atomic_Operation_End
+    timebase.o(.ARM.exidx.text.Timebase_Window_Timer_Get_Interval) refers to timebase.o(.text.Timebase_Window_Timer_Get_Interval) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_Window_Timer_Get_Interval_Reset) refers to timebase.o(.text.Timebase_Window_Timer_Get_Interval) for Timebase_Window_Timer_Get_Interval
+    timebase.o(.text.Timebase_Window_Timer_Get_Interval_Reset) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.text.Timebase_Window_Timer_Get_Interval_Reset) refers to timebase.o(.text.Timebase_Window_Timer_Reset) for Timebase_Window_Timer_Reset
+    timebase.o(.ARM.exidx.text.Timebase_Window_Timer_Get_Interval_Reset) refers to timebase.o(.text.Timebase_Window_Timer_Get_Interval_Reset) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_SS_Get_Status) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Get_Status) refers to timebase.o(.text.Timebase_DownCounter_SS_Get_Status) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_SS_Set_Status) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Set_Status) refers to timebase.o(.text.Timebase_DownCounter_SS_Set_Status) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_SS_Get_Value) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Get_Value) refers to timebase.o(.text.Timebase_DownCounter_SS_Get_Value) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_SS_Set_Value) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Set_Value) refers to timebase.o(.text.Timebase_DownCounter_SS_Set_Value) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_SS_Get_EndValueSec) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Get_EndValueSec) refers to timebase.o(.text.Timebase_DownCounter_SS_Get_EndValueSec) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_SS_Get_EndValueSubSec) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Get_EndValueSubSec) refers to timebase.o(.text.Timebase_DownCounter_SS_Get_EndValueSubSec) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_SS_Set_EndValueSec) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Set_EndValueSec) refers to timebase.o(.text.Timebase_DownCounter_SS_Set_EndValueSec) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_SS_Set_EndValueSubSec) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Set_EndValueSubSec) refers to timebase.o(.text.Timebase_DownCounter_SS_Set_EndValueSubSec) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_SS_Get_PeriodValue) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Get_PeriodValue) refers to timebase.o(.text.Timebase_DownCounter_SS_Get_PeriodValue) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_SS_Set_PeriodValue) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Set_PeriodValue) refers to timebase.o(.text.Timebase_DownCounter_SS_Set_PeriodValue) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_SS_Get_Period_Flag) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Get_Period_Flag) refers to timebase.o(.text.Timebase_DownCounter_SS_Get_Period_Flag) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_SS_Set_Period_Flag) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Set_Period_Flag) refers to timebase.o(.text.Timebase_DownCounter_SS_Set_Period_Flag) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_SS_Clear_Period_Flag) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Clear_Period_Flag) refers to timebase.o(.text.Timebase_DownCounter_SS_Clear_Period_Flag) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_SS_Get_ReloadValue) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Get_ReloadValue) refers to timebase.o(.text.Timebase_DownCounter_SS_Get_ReloadValue) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_SS_Set_ReloadValue) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Set_ReloadValue) refers to timebase.o(.text.Timebase_DownCounter_SS_Set_ReloadValue) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_SS_Reset) refers to timebase.o(.text.Timebase_DownCounter_SS_Set_EndValueSubSec) for Timebase_DownCounter_SS_Set_EndValueSubSec
+    timebase.o(.text.Timebase_DownCounter_SS_Reset) refers to timebase.o(.text.Timebase_DownCounter_SS_Set_EndValueSec) for Timebase_DownCounter_SS_Set_EndValueSec
+    timebase.o(.text.Timebase_DownCounter_SS_Reset) refers to timebase.o(.text.Timebase_DownCounter_SS_Set_Value) for Timebase_DownCounter_SS_Set_Value
+    timebase.o(.text.Timebase_DownCounter_SS_Reset) refers to timebase.o(.text.Timebase_DownCounter_SS_Set_Status) for Timebase_DownCounter_SS_Set_Status
+    timebase.o(.text.Timebase_DownCounter_SS_Reset) refers to timebase.o(.text.Timebase_DownCounter_SS_Clear_Period_Flag) for Timebase_DownCounter_SS_Clear_Period_Flag
+    timebase.o(.text.Timebase_DownCounter_SS_Reset) refers to timebase.o(.text.Timebase_DownCounter_SS_Set_ReloadValue) for Timebase_DownCounter_SS_Set_ReloadValue
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Reset) refers to timebase.o(.text.Timebase_DownCounter_SS_Reset) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_SS_Clear_All_Flags) refers to timebase.o(.text.Timebase_DownCounter_SS_Reset) for Timebase_DownCounter_SS_Reset
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Clear_All_Flags) refers to timebase.o(.text.Timebase_DownCounter_SS_Clear_All_Flags) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_SS_Start) refers to timebase.o(.text.Timebase_DownCounter_SS_Get_Status) for Timebase_DownCounter_SS_Get_Status
+    timebase.o(.text.Timebase_DownCounter_SS_Start) refers to timebase.o(.text.Timebase_DownCounter_SS_Set_Status) for Timebase_DownCounter_SS_Set_Status
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Start) refers to timebase.o(.text.Timebase_DownCounter_SS_Start) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_SS_Stop) refers to timebase.o(.text.Timebase_DownCounter_SS_Get_Status) for Timebase_DownCounter_SS_Get_Status
+    timebase.o(.text.Timebase_DownCounter_SS_Stop) refers to timebase.o(.text.Timebase_DownCounter_SS_Set_Status) for Timebase_DownCounter_SS_Set_Status
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Stop) refers to timebase.o(.text.Timebase_DownCounter_SS_Stop) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_SS_Set_Securely) refers to timebase.o(.text.Timebase_DownCounter_SS_Get_Status) for Timebase_DownCounter_SS_Get_Status
+    timebase.o(.text.Timebase_DownCounter_SS_Set_Securely) refers to timebase.o(.text.Timebase_DownCounter_SS_Set_Value) for Timebase_DownCounter_SS_Set_Value
+    timebase.o(.text.Timebase_DownCounter_SS_Set_Securely) refers to timebase.o(.text.Timebase_Timer_Get_SubSeconds) for Timebase_Timer_Get_SubSeconds
+    timebase.o(.text.Timebase_DownCounter_SS_Set_Securely) refers to timebase.o(.text.Timebase_Timer_Get_Seconds) for Timebase_Timer_Get_Seconds
+    timebase.o(.text.Timebase_DownCounter_SS_Set_Securely) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.text.Timebase_DownCounter_SS_Set_Securely) refers to timebase.o(.text.Timebase_DownCounter_SS_Set_EndValueSec) for Timebase_DownCounter_SS_Set_EndValueSec
+    timebase.o(.text.Timebase_DownCounter_SS_Set_Securely) refers to timebase.o(.text.Timebase_DownCounter_SS_Set_EndValueSubSec) for Timebase_DownCounter_SS_Set_EndValueSubSec
+    timebase.o(.text.Timebase_DownCounter_SS_Set_Securely) refers to timebase.o(.text.Timebase_DownCounter_SS_Set_ReloadValue) for Timebase_DownCounter_SS_Set_ReloadValue
+    timebase.o(.text.Timebase_DownCounter_SS_Set_Securely) refers to timebase.o(.text.Timebase_DownCounter_SS_Start) for Timebase_DownCounter_SS_Start
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Set_Securely) refers to timebase.o(.text.Timebase_DownCounter_SS_Set_Securely) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_SS_Set_Forcefully) refers to timebase.o(.text.Timebase_DownCounter_SS_Reset) for Timebase_DownCounter_SS_Reset
+    timebase.o(.text.Timebase_DownCounter_SS_Set_Forcefully) refers to timebase.o(.text.Timebase_DownCounter_SS_Set_Securely) for Timebase_DownCounter_SS_Set_Securely
+    timebase.o(.text.Timebase_DownCounter_SS_Set_Forcefully) refers to timebase.o(.text.Timebase_DownCounter_SS_Set_ReloadValue) for Timebase_DownCounter_SS_Set_ReloadValue
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Set_Forcefully) refers to timebase.o(.text.Timebase_DownCounter_SS_Set_Forcefully) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_SS_Update) refers to timebase.o(.text.Timebase_DownCounter_SS_Get_Status) for Timebase_DownCounter_SS_Get_Status
+    timebase.o(.text.Timebase_DownCounter_SS_Update) refers to timebase.o(.text.Timebase_Timer_Get_SubSeconds) for Timebase_Timer_Get_SubSeconds
+    timebase.o(.text.Timebase_DownCounter_SS_Update) refers to timebase.o(.text.Timebase_Timer_Get_Seconds) for Timebase_Timer_Get_Seconds
+    timebase.o(.text.Timebase_DownCounter_SS_Update) refers to timebase.o(.text.Timebase_DownCounter_SS_Get_EndValueSubSec) for Timebase_DownCounter_SS_Get_EndValueSubSec
+    timebase.o(.text.Timebase_DownCounter_SS_Update) refers to timebase.o(.text.Timebase_DownCounter_SS_Get_EndValueSec) for Timebase_DownCounter_SS_Get_EndValueSec
+    timebase.o(.text.Timebase_DownCounter_SS_Update) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.text.Timebase_DownCounter_SS_Update) refers to timebase.o(.text.Timebase_DownCounter_SS_Set_Value) for Timebase_DownCounter_SS_Set_Value
+    timebase.o(.text.Timebase_DownCounter_SS_Update) refers to timebase.o(.text.Timebase_DownCounter_SS_Get_Value) for Timebase_DownCounter_SS_Get_Value
+    timebase.o(.text.Timebase_DownCounter_SS_Update) refers to timebase.o(.text.Timebase_DownCounter_SS_Get_ReloadValue) for Timebase_DownCounter_SS_Get_ReloadValue
+    timebase.o(.text.Timebase_DownCounter_SS_Update) refers to timebase.o(.text.Timebase_DownCounter_SS_Reset) for Timebase_DownCounter_SS_Reset
+    timebase.o(.text.Timebase_DownCounter_SS_Update) refers to timebase.o(.text.Timebase_DownCounter_SS_Set_ReloadValue) for Timebase_DownCounter_SS_Set_ReloadValue
+    timebase.o(.text.Timebase_DownCounter_SS_Update) refers to timebase.o(.text.Timebase_DownCounter_SS_Set_Status) for Timebase_DownCounter_SS_Set_Status
+    timebase.o(.text.Timebase_DownCounter_SS_Update) refers to timebase.o(.text.Timebase_DownCounter_SS_Set_EndValueSec) for Timebase_DownCounter_SS_Set_EndValueSec
+    timebase.o(.text.Timebase_DownCounter_SS_Update) refers to timebase.o(.text.Timebase_DownCounter_SS_Set_EndValueSubSec) for Timebase_DownCounter_SS_Set_EndValueSubSec
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Update) refers to timebase.o(.text.Timebase_DownCounter_SS_Update) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_SS_Expired) refers to timebase.o(.text.Timebase_DownCounter_SS_Get_Status) for Timebase_DownCounter_SS_Get_Status
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Expired) refers to timebase.o(.text.Timebase_DownCounter_SS_Expired) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_SS_Expired_Event) refers to timebase.o(.text.Timebase_DownCounter_SS_Get_Status) for Timebase_DownCounter_SS_Get_Status
+    timebase.o(.text.Timebase_DownCounter_SS_Expired_Event) refers to timebase.o(.text.Timebase_DownCounter_SS_Clear_All_Flags) for Timebase_DownCounter_SS_Clear_All_Flags
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Expired_Event) refers to timebase.o(.text.Timebase_DownCounter_SS_Expired_Event) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_SS_Oneshot_Expired_Event) refers to timebase.o(.text.Timebase_DownCounter_SS_Expired_Event) for Timebase_DownCounter_SS_Expired_Event
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Oneshot_Expired_Event) refers to timebase.o(.text.Timebase_DownCounter_SS_Oneshot_Expired_Event) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_SS_Continuous_Expired_Event) refers to timebase.o(.text.Timebase_DownCounter_SS_Get_Status) for Timebase_DownCounter_SS_Get_Status
+    timebase.o(.text.Timebase_DownCounter_SS_Continuous_Expired_Event) refers to timebase.o(.text.Timebase_DownCounter_SS_Get_ReloadValue) for Timebase_DownCounter_SS_Get_ReloadValue
+    timebase.o(.text.Timebase_DownCounter_SS_Continuous_Expired_Event) refers to timebase.o(.text.Timebase_DownCounter_SS_Clear_All_Flags) for Timebase_DownCounter_SS_Clear_All_Flags
+    timebase.o(.text.Timebase_DownCounter_SS_Continuous_Expired_Event) refers to timebase.o(.text.Timebase_DownCounter_SS_Set_Securely) for Timebase_DownCounter_SS_Set_Securely
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Continuous_Expired_Event) refers to timebase.o(.text.Timebase_DownCounter_SS_Continuous_Expired_Event) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_SS_Set_Period_Value_Securely) refers to timebase.o(.text.Timebase_DownCounter_SS_Get_Period_Flag) for Timebase_DownCounter_SS_Get_Period_Flag
+    timebase.o(.text.Timebase_DownCounter_SS_Set_Period_Value_Securely) refers to timebase.o(.text.Timebase_DownCounter_SS_Get_Value) for Timebase_DownCounter_SS_Get_Value
+    timebase.o(.text.Timebase_DownCounter_SS_Set_Period_Value_Securely) refers to timebase.o(.text.Timebase_DownCounter_SS_Set_PeriodValue) for Timebase_DownCounter_SS_Set_PeriodValue
+    timebase.o(.text.Timebase_DownCounter_SS_Set_Period_Value_Securely) refers to timebase.o(.text.Timebase_DownCounter_SS_Set_Period_Flag) for Timebase_DownCounter_SS_Set_Period_Flag
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Set_Period_Value_Securely) refers to timebase.o(.text.Timebase_DownCounter_SS_Set_Period_Value_Securely) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_SS_Get_Remaining_Period_Value) refers to timebase.o(.text.Timebase_DownCounter_SS_Get_Value) for Timebase_DownCounter_SS_Get_Value
+    timebase.o(.text.Timebase_DownCounter_SS_Get_Remaining_Period_Value) refers to timebase.o(.text.Timebase_DownCounter_SS_Get_PeriodValue) for Timebase_DownCounter_SS_Get_PeriodValue
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Get_Remaining_Period_Value) refers to timebase.o(.text.Timebase_DownCounter_SS_Get_Remaining_Period_Value) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_SS_Period_Value_Expired) refers to timebase.o(.text.Timebase_DownCounter_SS_Get_Remaining_Period_Value) for Timebase_DownCounter_SS_Get_Remaining_Period_Value
+    timebase.o(.text.Timebase_DownCounter_SS_Period_Value_Expired) refers to timebase.o(.text.Timebase_DownCounter_SS_Get_Period_Flag) for Timebase_DownCounter_SS_Get_Period_Flag
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Period_Value_Expired) refers to timebase.o(.text.Timebase_DownCounter_SS_Period_Value_Expired) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_SS_Period_Value_Expired_Event) refers to timebase.o(.text.Timebase_DownCounter_SS_Period_Value_Expired) for Timebase_DownCounter_SS_Period_Value_Expired
+    timebase.o(.text.Timebase_DownCounter_SS_Period_Value_Expired_Event) refers to timebase.o(.text.Timebase_DownCounter_SS_Clear_Period_Flag) for Timebase_DownCounter_SS_Clear_Period_Flag
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Period_Value_Expired_Event) refers to timebase.o(.text.Timebase_DownCounter_SS_Period_Value_Expired_Event) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_SS_Update_All) refers to timebase.o(.text.Timebase_DownCounter_SS_Update) for Timebase_DownCounter_SS_Update
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Update_All) refers to timebase.o(.text.Timebase_DownCounter_SS_Update_All) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_SS_Reset_All) refers to timebase.o(.text.Timebase_DownCounter_SS_Reset) for Timebase_DownCounter_SS_Reset
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Reset_All) refers to timebase.o(.text.Timebase_DownCounter_SS_Reset_All) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_Get_Status) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_Get_Status) refers to timebase.o(.text.Timebase_DownCounter_Get_Status) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_Set_Status) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_Set_Status) refers to timebase.o(.text.Timebase_DownCounter_Set_Status) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_Get_Value) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_Get_Value) refers to timebase.o(.text.Timebase_DownCounter_Get_Value) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_Set_Value) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_Set_Value) refers to timebase.o(.text.Timebase_DownCounter_Set_Value) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_Get_EndValue) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_Get_EndValue) refers to timebase.o(.text.Timebase_DownCounter_Get_EndValue) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_Set_EndValue) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_Set_EndValue) refers to timebase.o(.text.Timebase_DownCounter_Set_EndValue) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_Get_PeriodValue) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_Get_PeriodValue) refers to timebase.o(.text.Timebase_DownCounter_Get_PeriodValue) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_Set_PeriodValue) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_Set_PeriodValue) refers to timebase.o(.text.Timebase_DownCounter_Set_PeriodValue) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_Get_Period_Flag) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_Get_Period_Flag) refers to timebase.o(.text.Timebase_DownCounter_Get_Period_Flag) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_Set_Period_Flag) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_Set_Period_Flag) refers to timebase.o(.text.Timebase_DownCounter_Set_Period_Flag) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_Clear_Period_Flag) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_Clear_Period_Flag) refers to timebase.o(.text.Timebase_DownCounter_Clear_Period_Flag) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_Get_ReloadValue) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_Get_ReloadValue) refers to timebase.o(.text.Timebase_DownCounter_Get_ReloadValue) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_Set_ReloadValue) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_Set_ReloadValue) refers to timebase.o(.text.Timebase_DownCounter_Set_ReloadValue) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_Reset) refers to timebase.o(.text.Timebase_DownCounter_Set_EndValue) for Timebase_DownCounter_Set_EndValue
+    timebase.o(.text.Timebase_DownCounter_Reset) refers to timebase.o(.text.Timebase_DownCounter_Set_Value) for Timebase_DownCounter_Set_Value
+    timebase.o(.text.Timebase_DownCounter_Reset) refers to timebase.o(.text.Timebase_DownCounter_Set_Status) for Timebase_DownCounter_Set_Status
+    timebase.o(.text.Timebase_DownCounter_Reset) refers to timebase.o(.text.Timebase_DownCounter_Clear_Period_Flag) for Timebase_DownCounter_Clear_Period_Flag
+    timebase.o(.text.Timebase_DownCounter_Reset) refers to timebase.o(.text.Timebase_DownCounter_Set_ReloadValue) for Timebase_DownCounter_Set_ReloadValue
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_Reset) refers to timebase.o(.text.Timebase_DownCounter_Reset) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_Clear_All_Flags) refers to timebase.o(.text.Timebase_DownCounter_Reset) for Timebase_DownCounter_Reset
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_Clear_All_Flags) refers to timebase.o(.text.Timebase_DownCounter_Clear_All_Flags) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_Start) refers to timebase.o(.text.Timebase_DownCounter_Get_Status) for Timebase_DownCounter_Get_Status
+    timebase.o(.text.Timebase_DownCounter_Start) refers to timebase.o(.text.Timebase_DownCounter_Set_Status) for Timebase_DownCounter_Set_Status
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_Start) refers to timebase.o(.text.Timebase_DownCounter_Start) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_Stop) refers to timebase.o(.text.Timebase_DownCounter_Get_Status) for Timebase_DownCounter_Get_Status
+    timebase.o(.text.Timebase_DownCounter_Stop) refers to timebase.o(.text.Timebase_DownCounter_Set_Status) for Timebase_DownCounter_Set_Status
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_Stop) refers to timebase.o(.text.Timebase_DownCounter_Stop) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_Set_Securely) refers to timebase.o(.text.Timebase_DownCounter_Get_Status) for Timebase_DownCounter_Get_Status
+    timebase.o(.text.Timebase_DownCounter_Set_Securely) refers to timebase.o(.text.Timebase_DownCounter_Set_Value) for Timebase_DownCounter_Set_Value
+    timebase.o(.text.Timebase_DownCounter_Set_Securely) refers to timebase.o(.text.Timebase_Timer_Get_Seconds) for Timebase_Timer_Get_Seconds
+    timebase.o(.text.Timebase_DownCounter_Set_Securely) refers to timebase.o(.text.Timebase_DownCounter_Set_EndValue) for Timebase_DownCounter_Set_EndValue
+    timebase.o(.text.Timebase_DownCounter_Set_Securely) refers to timebase.o(.text.Timebase_DownCounter_Set_ReloadValue) for Timebase_DownCounter_Set_ReloadValue
+    timebase.o(.text.Timebase_DownCounter_Set_Securely) refers to timebase.o(.text.Timebase_DownCounter_Start) for Timebase_DownCounter_Start
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_Set_Securely) refers to timebase.o(.text.Timebase_DownCounter_Set_Securely) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_Set_Forcefully) refers to timebase.o(.text.Timebase_DownCounter_Reset) for Timebase_DownCounter_Reset
+    timebase.o(.text.Timebase_DownCounter_Set_Forcefully) refers to timebase.o(.text.Timebase_DownCounter_Set_Securely) for Timebase_DownCounter_Set_Securely
+    timebase.o(.text.Timebase_DownCounter_Set_Forcefully) refers to timebase.o(.text.Timebase_DownCounter_Set_ReloadValue) for Timebase_DownCounter_Set_ReloadValue
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_Set_Forcefully) refers to timebase.o(.text.Timebase_DownCounter_Set_Forcefully) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_Update) refers to timebase.o(.text.Timebase_DownCounter_Get_Status) for Timebase_DownCounter_Get_Status
+    timebase.o(.text.Timebase_DownCounter_Update) refers to timebase.o(.text.Timebase_DownCounter_Get_EndValue) for Timebase_DownCounter_Get_EndValue
+    timebase.o(.text.Timebase_DownCounter_Update) refers to timebase.o(.text.Timebase_Timer_Get_Seconds) for Timebase_Timer_Get_Seconds
+    timebase.o(.text.Timebase_DownCounter_Update) refers to timebase.o(.text.Timebase_DownCounter_Set_Value) for Timebase_DownCounter_Set_Value
+    timebase.o(.text.Timebase_DownCounter_Update) refers to timebase.o(.text.Timebase_DownCounter_Get_Value) for Timebase_DownCounter_Get_Value
+    timebase.o(.text.Timebase_DownCounter_Update) refers to timebase.o(.text.Timebase_DownCounter_Get_ReloadValue) for Timebase_DownCounter_Get_ReloadValue
+    timebase.o(.text.Timebase_DownCounter_Update) refers to timebase.o(.text.Timebase_DownCounter_Reset) for Timebase_DownCounter_Reset
+    timebase.o(.text.Timebase_DownCounter_Update) refers to timebase.o(.text.Timebase_DownCounter_Set_ReloadValue) for Timebase_DownCounter_Set_ReloadValue
+    timebase.o(.text.Timebase_DownCounter_Update) refers to timebase.o(.text.Timebase_DownCounter_Set_Status) for Timebase_DownCounter_Set_Status
+    timebase.o(.text.Timebase_DownCounter_Update) refers to timebase.o(.text.Timebase_DownCounter_Set_EndValue) for Timebase_DownCounter_Set_EndValue
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_Update) refers to timebase.o(.text.Timebase_DownCounter_Update) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_Expired) refers to timebase.o(.text.Timebase_DownCounter_Get_Status) for Timebase_DownCounter_Get_Status
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_Expired) refers to timebase.o(.text.Timebase_DownCounter_Expired) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_Expired_Event) refers to timebase.o(.text.Timebase_DownCounter_Get_Status) for Timebase_DownCounter_Get_Status
+    timebase.o(.text.Timebase_DownCounter_Expired_Event) refers to timebase.o(.text.Timebase_DownCounter_Clear_All_Flags) for Timebase_DownCounter_Clear_All_Flags
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_Expired_Event) refers to timebase.o(.text.Timebase_DownCounter_Expired_Event) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_Set_Period_Value_Securely) refers to timebase.o(.text.Timebase_DownCounter_Get_Period_Flag) for Timebase_DownCounter_Get_Period_Flag
+    timebase.o(.text.Timebase_DownCounter_Set_Period_Value_Securely) refers to timebase.o(.text.Timebase_DownCounter_Get_Value) for Timebase_DownCounter_Get_Value
+    timebase.o(.text.Timebase_DownCounter_Set_Period_Value_Securely) refers to timebase.o(.text.Timebase_DownCounter_Set_PeriodValue) for Timebase_DownCounter_Set_PeriodValue
+    timebase.o(.text.Timebase_DownCounter_Set_Period_Value_Securely) refers to timebase.o(.text.Timebase_DownCounter_Set_Period_Flag) for Timebase_DownCounter_Set_Period_Flag
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_Set_Period_Value_Securely) refers to timebase.o(.text.Timebase_DownCounter_Set_Period_Value_Securely) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_Get_Remaining_Period_Value) refers to timebase.o(.text.Timebase_DownCounter_Get_Value) for Timebase_DownCounter_Get_Value
+    timebase.o(.text.Timebase_DownCounter_Get_Remaining_Period_Value) refers to timebase.o(.text.Timebase_DownCounter_Get_PeriodValue) for Timebase_DownCounter_Get_PeriodValue
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_Get_Remaining_Period_Value) refers to timebase.o(.text.Timebase_DownCounter_Get_Remaining_Period_Value) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_Period_Value_Expired) refers to timebase.o(.text.Timebase_DownCounter_Get_Remaining_Period_Value) for Timebase_DownCounter_Get_Remaining_Period_Value
+    timebase.o(.text.Timebase_DownCounter_Period_Value_Expired) refers to timebase.o(.text.Timebase_DownCounter_Get_Period_Flag) for Timebase_DownCounter_Get_Period_Flag
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_Period_Value_Expired) refers to timebase.o(.text.Timebase_DownCounter_Period_Value_Expired) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_Period_Value_Expired_Event) refers to timebase.o(.text.Timebase_DownCounter_Period_Value_Expired) for Timebase_DownCounter_Period_Value_Expired
+    timebase.o(.text.Timebase_DownCounter_Period_Value_Expired_Event) refers to timebase.o(.text.Timebase_DownCounter_Clear_Period_Flag) for Timebase_DownCounter_Clear_Period_Flag
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_Period_Value_Expired_Event) refers to timebase.o(.text.Timebase_DownCounter_Period_Value_Expired_Event) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_Oneshot_Expired_Event) refers to timebase.o(.text.Timebase_DownCounter_Expired_Event) for Timebase_DownCounter_Expired_Event
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_Oneshot_Expired_Event) refers to timebase.o(.text.Timebase_DownCounter_Oneshot_Expired_Event) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_Continuous_Expired_Event) refers to timebase.o(.text.Timebase_DownCounter_Get_Status) for Timebase_DownCounter_Get_Status
+    timebase.o(.text.Timebase_DownCounter_Continuous_Expired_Event) refers to timebase.o(.text.Timebase_DownCounter_Get_ReloadValue) for Timebase_DownCounter_Get_ReloadValue
+    timebase.o(.text.Timebase_DownCounter_Continuous_Expired_Event) refers to timebase.o(.text.Timebase_DownCounter_Clear_All_Flags) for Timebase_DownCounter_Clear_All_Flags
+    timebase.o(.text.Timebase_DownCounter_Continuous_Expired_Event) refers to timebase.o(.text.Timebase_DownCounter_Set_Securely) for Timebase_DownCounter_Set_Securely
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_Continuous_Expired_Event) refers to timebase.o(.text.Timebase_DownCounter_Continuous_Expired_Event) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_Update_All) refers to timebase.o(.text.Timebase_DownCounter_Update) for Timebase_DownCounter_Update
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_Update_All) refers to timebase.o(.text.Timebase_DownCounter_Update_All) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_DownCounter_Reset_All) refers to timebase.o(.text.Timebase_DownCounter_Reset) for Timebase_DownCounter_Reset
+    timebase.o(.ARM.exidx.text.Timebase_DownCounter_Reset_All) refers to timebase.o(.text.Timebase_DownCounter_Reset_All) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_Get_Update_Req_Sts) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.ARM.exidx.text.Timebase_Get_Update_Req_Sts) refers to timebase.o(.text.Timebase_Get_Update_Req_Sts) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_Reset) refers to timebase.o(.text.Timebase_DownCounter_SS_Reset_All) for Timebase_DownCounter_SS_Reset_All
+    timebase.o(.text.Timebase_Reset) refers to timebase.o(.text.Timebase_DownCounter_Reset_All) for Timebase_DownCounter_Reset_All
+    timebase.o(.ARM.exidx.text.Timebase_Reset) refers to timebase.o(.text.Timebase_Reset) for [Anonymous Symbol]
+    timebase.o(.ARM.exidx.text.Timebase_LP_Reset) refers to timebase.o(.text.Timebase_LP_Reset) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_Init) refers to timebase.o(.text.Timebase_Struct_Init) for Timebase_Struct_Init
+    timebase.o(.text.Timebase_Init) refers to timebase.o(.text.Timebase_Timer_Enable) for Timebase_Timer_Enable
+    timebase.o(.text.Timebase_Init) refers to timebase.o(.text.Timebase_Reset) for Timebase_Reset
+    timebase.o(.ARM.exidx.text.Timebase_Init) refers to timebase.o(.text.Timebase_Init) for [Anonymous Symbol]
+    timebase.o(.text.Timebase_Main_Loop_Executables) refers to timebase.o(.bss.Timebase) for Timebase
+    timebase.o(.text.Timebase_Main_Loop_Executables) refers to timebase.o(.text.Timebase_Timer_Sync_With_Shadow_Variables) for Timebase_Timer_Sync_With_Shadow_Variables
+    timebase.o(.text.Timebase_Main_Loop_Executables) refers to timebase.o(.text.Timebase_DownCounter_SS_Update_All) for Timebase_DownCounter_SS_Update_All
+    timebase.o(.text.Timebase_Main_Loop_Executables) refers to timebase.o(.text.Timebase_DownCounter_Update_All) for Timebase_DownCounter_Update_All
+    timebase.o(.ARM.exidx.text.Timebase_Main_Loop_Executables) refers to timebase.o(.text.Timebase_Main_Loop_Executables) for [Anonymous Symbol]
+    timebase.o(.ARM.exidx.text.Timebase_LP_ISR_Executables) refers to timebase.o(.text.Timebase_LP_ISR_Executables) for [Anonymous Symbol]
     startup_stm32f401xc.o(STACK) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
     startup_stm32f401xc.o(HEAP) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
     startup_stm32f401xc.o(RESET) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
     startup_stm32f401xc.o(RESET) refers to startup_stm32f401xc.o(STACK) for __initial_sp
     startup_stm32f401xc.o(RESET) refers to startup_stm32f401xc.o(.text) for Reset_Handler
     startup_stm32f401xc.o(RESET) refers to debug.o(.text.TIM1_UP_TIM10_IRQHandler) for TIM1_UP_TIM10_IRQHandler
+    startup_stm32f401xc.o(RESET) refers to timebase.o(.text.TIM1_TRG_COM_TIM11_IRQHandler) for TIM1_TRG_COM_TIM11_IRQHandler
     startup_stm32f401xc.o(RESET) refers to debug.o(.text.USART2_IRQHandler) for USART2_IRQHandler
     startup_stm32f401xc.o(.text) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
     startup_stm32f401xc.o(.text) refers to system_stm32f4xx.o(.text.SystemInit) for SystemInit
@@ -429,6 +728,155 @@ Removing Unused input sections from the image.
     Removing debug.o(.text.Debug_Print_Buf_Data), (76 bytes).
     Removing debug.o(.ARM.exidx.text.Debug_Print_Buf_Data), (8 bytes).
     Removing debug.o(.ARM.exidx.text.Debug_Init), (8 bytes).
+    Removing timebase.o(.text), (0 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_Struct_Init), (8 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_Timer_Enable), (8 bytes).
+    Removing timebase.o(.ARM.exidx.text.__NVIC_SetPriority), (8 bytes).
+    Removing timebase.o(.ARM.exidx.text.__NVIC_EnableIRQ), (8 bytes).
+    Removing timebase.o(.text.Timebase_Timer_Disable), (2 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_Timer_Disable), (8 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_Atomic_Operation_Start), (8 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_Atomic_Operation_End), (8 bytes).
+    Removing timebase.o(.ARM.exidx.text.TIM1_TRG_COM_TIM11_IRQHandler), (8 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_ISR_Executables), (8 bytes).
+    Removing timebase.o(.text.Timebase_Timer_Get_SubSecondsShadow), (14 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_Timer_Get_SubSecondsShadow), (8 bytes).
+    Removing timebase.o(.text.Timebase_Timer_Get_SecondsUpTime), (14 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_Timer_Get_SecondsUpTime), (8 bytes).
+    Removing timebase.o(.text.Timebase_Timer_Get_SecondsShadow), (14 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_Timer_Get_SecondsShadow), (8 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_Timer_Get_SubSeconds), (8 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_Timer_Get_Seconds), (8 bytes).
+    Removing timebase.o(.text.Timebase_Timer_Set_SubSeconds), (26 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_Timer_Set_SubSeconds), (8 bytes).
+    Removing timebase.o(.text.Timebase_Timer_Set_SubSecondsShadow), (36 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_Timer_Set_SubSecondsShadow), (8 bytes).
+    Removing timebase.o(.text.Timebase_Timer_Set_SubSecondsUpTime), (32 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_Timer_Set_SubSecondsUpTime), (8 bytes).
+    Removing timebase.o(.text.Timebase_Timer_Set_Seconds), (22 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_Timer_Set_Seconds), (8 bytes).
+    Removing timebase.o(.text.Timebase_Timer_Get_SubSecondsShadow_Securely), (54 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_Timer_Get_SubSecondsShadow_Securely), (8 bytes).
+    Removing timebase.o(.text.Timebase_Timer_Get_SubSecondsUpTime_Securely), (44 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_Timer_Get_SubSecondsUpTime_Securely), (8 bytes).
+    Removing timebase.o(.text.Timebase_Timer_Get_SecondsShadow_Securely), (44 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_Timer_Get_SecondsShadow_Securely), (8 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_Timer_Sync_With_Shadow_Variables), (8 bytes).
+    Removing timebase.o(.text.Timebase_Timer_Delay_SubSeconds), (150 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_Timer_Delay_SubSeconds), (8 bytes).
+    Removing timebase.o(.text.Timebase_Timer_Await_SubSeconds), (156 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_Timer_Await_SubSeconds), (8 bytes).
+    Removing timebase.o(.text.Timebase_Timer_Delay_Seconds), (70 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_Timer_Delay_Seconds), (8 bytes).
+    Removing timebase.o(.text.Timebase_Window_Timer_Reset), (26 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_Window_Timer_Reset), (8 bytes).
+    Removing timebase.o(.text.Timebase_Window_Timer_Start), (74 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_Window_Timer_Start), (8 bytes).
+    Removing timebase.o(.text.Timebase_Window_Timer_Get_Interval), (114 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_Window_Timer_Get_Interval), (8 bytes).
+    Removing timebase.o(.text.Timebase_Window_Timer_Get_Interval_Reset), (42 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_Window_Timer_Get_Interval_Reset), (8 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Get_Status), (8 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Set_Status), (8 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Get_Value), (8 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Set_Value), (8 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Get_EndValueSec), (8 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Get_EndValueSubSec), (8 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Set_EndValueSec), (8 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Set_EndValueSubSec), (8 bytes).
+    Removing timebase.o(.text.Timebase_DownCounter_SS_Get_PeriodValue), (34 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Get_PeriodValue), (8 bytes).
+    Removing timebase.o(.text.Timebase_DownCounter_SS_Set_PeriodValue), (78 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Set_PeriodValue), (8 bytes).
+    Removing timebase.o(.text.Timebase_DownCounter_SS_Get_Period_Flag), (40 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Get_Period_Flag), (8 bytes).
+    Removing timebase.o(.text.Timebase_DownCounter_SS_Set_Period_Flag), (44 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Set_Period_Flag), (8 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Clear_Period_Flag), (8 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Get_ReloadValue), (8 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Set_ReloadValue), (8 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Reset), (8 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Clear_All_Flags), (8 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Start), (8 bytes).
+    Removing timebase.o(.text.Timebase_DownCounter_SS_Stop), (38 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Stop), (8 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Set_Securely), (8 bytes).
+    Removing timebase.o(.text.Timebase_DownCounter_SS_Set_Forcefully), (42 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Set_Forcefully), (8 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Update), (8 bytes).
+    Removing timebase.o(.text.Timebase_DownCounter_SS_Expired), (46 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Expired), (8 bytes).
+    Removing timebase.o(.text.Timebase_DownCounter_SS_Expired_Event), (54 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Expired_Event), (8 bytes).
+    Removing timebase.o(.text.Timebase_DownCounter_SS_Oneshot_Expired_Event), (20 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Oneshot_Expired_Event), (8 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Continuous_Expired_Event), (8 bytes).
+    Removing timebase.o(.text.Timebase_DownCounter_SS_Set_Period_Value_Securely), (58 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Set_Period_Value_Securely), (8 bytes).
+    Removing timebase.o(.text.Timebase_DownCounter_SS_Get_Remaining_Period_Value), (56 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Get_Remaining_Period_Value), (8 bytes).
+    Removing timebase.o(.text.Timebase_DownCounter_SS_Period_Value_Expired), (58 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Period_Value_Expired), (8 bytes).
+    Removing timebase.o(.text.Timebase_DownCounter_SS_Period_Value_Expired_Event), (54 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Period_Value_Expired_Event), (8 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Update_All), (8 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_SS_Reset_All), (8 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_Get_Status), (8 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_Set_Status), (8 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_Get_Value), (8 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_Set_Value), (8 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_Get_EndValue), (8 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_Set_EndValue), (8 bytes).
+    Removing timebase.o(.text.Timebase_DownCounter_Get_PeriodValue), (36 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_Get_PeriodValue), (8 bytes).
+    Removing timebase.o(.text.Timebase_DownCounter_Set_PeriodValue), (82 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_Set_PeriodValue), (8 bytes).
+    Removing timebase.o(.text.Timebase_DownCounter_Get_Period_Flag), (40 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_Get_Period_Flag), (8 bytes).
+    Removing timebase.o(.text.Timebase_DownCounter_Set_Period_Flag), (44 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_Set_Period_Flag), (8 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_Clear_Period_Flag), (8 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_Get_ReloadValue), (8 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_Set_ReloadValue), (8 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_Reset), (8 bytes).
+    Removing timebase.o(.text.Timebase_DownCounter_Clear_All_Flags), (20 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_Clear_All_Flags), (8 bytes).
+    Removing timebase.o(.text.Timebase_DownCounter_Start), (38 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_Start), (8 bytes).
+    Removing timebase.o(.text.Timebase_DownCounter_Stop), (38 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_Stop), (8 bytes).
+    Removing timebase.o(.text.Timebase_DownCounter_Set_Securely), (78 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_Set_Securely), (8 bytes).
+    Removing timebase.o(.text.Timebase_DownCounter_Set_Forcefully), (42 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_Set_Forcefully), (8 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_Update), (8 bytes).
+    Removing timebase.o(.text.Timebase_DownCounter_Expired), (46 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_Expired), (8 bytes).
+    Removing timebase.o(.text.Timebase_DownCounter_Expired_Event), (54 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_Expired_Event), (8 bytes).
+    Removing timebase.o(.text.Timebase_DownCounter_Set_Period_Value_Securely), (58 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_Set_Period_Value_Securely), (8 bytes).
+    Removing timebase.o(.text.Timebase_DownCounter_Get_Remaining_Period_Value), (56 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_Get_Remaining_Period_Value), (8 bytes).
+    Removing timebase.o(.text.Timebase_DownCounter_Period_Value_Expired), (58 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_Period_Value_Expired), (8 bytes).
+    Removing timebase.o(.text.Timebase_DownCounter_Period_Value_Expired_Event), (54 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_Period_Value_Expired_Event), (8 bytes).
+    Removing timebase.o(.text.Timebase_DownCounter_Oneshot_Expired_Event), (20 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_Oneshot_Expired_Event), (8 bytes).
+    Removing timebase.o(.text.Timebase_DownCounter_Continuous_Expired_Event), (74 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_Continuous_Expired_Event), (8 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_Update_All), (8 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_DownCounter_Reset_All), (8 bytes).
+    Removing timebase.o(.text.Timebase_Get_Update_Req_Sts), (16 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_Get_Update_Req_Sts), (8 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_Reset), (8 bytes).
+    Removing timebase.o(.text.Timebase_LP_Reset), (2 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_LP_Reset), (8 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_Init), (8 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_Main_Loop_Executables), (8 bytes).
+    Removing timebase.o(.text.Timebase_LP_ISR_Executables), (2 bytes).
+    Removing timebase.o(.ARM.exidx.text.Timebase_LP_ISR_Executables), (8 bytes).
     Removing system_stm32f4xx.o(.text), (0 bytes).
     Removing system_stm32f4xx.o(.ARM.exidx.text.SystemInit), (8 bytes).
     Removing system_stm32f4xx.o(.text.SystemCoreClockUpdate), (302 bytes).
@@ -437,7 +885,7 @@ Removing Unused input sections from the image.
     Removing system_stm32f4xx.o(.rodata.AHBPrescTable), (16 bytes).
     Removing system_stm32f4xx.o(.rodata.APBPrescTable), (8 bytes).
 
-122 unused section(s) (total 2460 bytes) removed from the image.
+271 unused section(s) (total 5650 bytes) removed from the image.
 
 ==============================================================================
 
@@ -504,6 +952,7 @@ Image Symbol Table
     main.c                                   0x00000000   Number         0  main.o ABSOLUTE
     rcc.c                                    0x00000000   Number         0  rcc.o ABSOLUTE
     system_stm32f4xx.c                       0x00000000   Number         0  system_stm32f4xx.o ABSOLUTE
+    timebase.c                               0x00000000   Number         0  timebase.o ABSOLUTE
     RESET                                    0x08000000   Section      404  startup_stm32f401xc.o(RESET)
     !!!main                                  0x08000194   Section        8  __main.o(!!!main)
     !!!scatter                               0x0800019c   Section       92  __scatter.o(!!!scatter)
@@ -584,29 +1033,77 @@ Image Symbol Table
     [Anonymous Symbol]                       0x080009e4   Section        0  rcc.o(.text.RCC_HSE_Clock_Config)
     [Anonymous Symbol]                       0x08000a98   Section        0  rcc.o(.text.RCC_LSE_Clock_Config)
     [Anonymous Symbol]                       0x08000b00   Section        0  system_stm32f4xx.o(.text.SystemInit)
-    [Anonymous Symbol]                       0x08000b14   Section        0  debug.o(.text.TIM1_UP_TIM10_IRQHandler)
-    [Anonymous Symbol]                       0x08000b6c   Section        0  debug.o(.text.USART2_IRQHandler)
-    __NVIC_EnableIRQ                         0x08000bdd   Thumb Code    48  debug.o(.text.__NVIC_EnableIRQ)
-    [Anonymous Symbol]                       0x08000bdc   Section        0  debug.o(.text.__NVIC_EnableIRQ)
-    __NVIC_SetPriority                       0x08000c0d   Thumb Code    66  debug.o(.text.__NVIC_SetPriority)
-    [Anonymous Symbol]                       0x08000c0c   Section        0  debug.o(.text.__NVIC_SetPriority)
-    [Anonymous Symbol]                       0x08000c50   Section        0  main.o(.text.main)
-    $v0                                      0x08000ca8   Number         0  fpinit.o(x$fpl$fpinit)
-    x$fpl$fpinit                             0x08000ca8   Section       26  fpinit.o(x$fpl$fpinit)
-    RCC_Get_APB1_Clock.apb_presc_table       0x08000cc2   Data           8  rcc.o(.rodata.RCC_Get_APB1_Clock.apb_presc_table)
-    [Anonymous Symbol]                       0x08000cc2   Section        0  rcc.o(.rodata.RCC_Get_APB1_Clock.apb_presc_table)
-    RCC_Get_APB2_Clock.apb_presc_table       0x08000cca   Data           8  rcc.o(.rodata.RCC_Get_APB2_Clock.apb_presc_table)
-    [Anonymous Symbol]                       0x08000cca   Section        0  rcc.o(.rodata.RCC_Get_APB2_Clock.apb_presc_table)
-    RCC_Get_HCLK.ahb_presc_table             0x08000cd2   Data          16  rcc.o(.rodata.RCC_Get_HCLK.ahb_presc_table)
-    [Anonymous Symbol]                       0x08000cd2   Section        0  rcc.o(.rodata.RCC_Get_HCLK.ahb_presc_table)
-    .L.str                                   0x08000ce2   Data          13  main.o(.rodata.str1.1)
-    [Anonymous Symbol]                       0x08000ce2   Section        0  main.o(.rodata.str1.1)
+    [Anonymous Symbol]                       0x08000b14   Section        0  timebase.o(.text.TIM1_TRG_COM_TIM11_IRQHandler)
+    [Anonymous Symbol]                       0x08000b2c   Section        0  debug.o(.text.TIM1_UP_TIM10_IRQHandler)
+    [Anonymous Symbol]                       0x08000b84   Section        0  timebase.o(.text.Timebase_Atomic_Operation_End)
+    [Anonymous Symbol]                       0x08000b88   Section        0  timebase.o(.text.Timebase_Atomic_Operation_Start)
+    [Anonymous Symbol]                       0x08000b8c   Section        0  timebase.o(.text.Timebase_DownCounter_Clear_Period_Flag)
+    [Anonymous Symbol]                       0x08000bb8   Section        0  timebase.o(.text.Timebase_DownCounter_Get_EndValue)
+    [Anonymous Symbol]                       0x08000bdc   Section        0  timebase.o(.text.Timebase_DownCounter_Get_ReloadValue)
+    [Anonymous Symbol]                       0x08000c00   Section        0  timebase.o(.text.Timebase_DownCounter_Get_Status)
+    [Anonymous Symbol]                       0x08000c28   Section        0  timebase.o(.text.Timebase_DownCounter_Get_Value)
+    [Anonymous Symbol]                       0x08000c4c   Section        0  timebase.o(.text.Timebase_DownCounter_Reset)
+    [Anonymous Symbol]                       0x08000c8c   Section        0  timebase.o(.text.Timebase_DownCounter_Reset_All)
+    [Anonymous Symbol]                       0x08000cbc   Section        0  timebase.o(.text.Timebase_DownCounter_SS_Clear_All_Flags)
+    [Anonymous Symbol]                       0x08000cd0   Section        0  timebase.o(.text.Timebase_DownCounter_SS_Clear_Period_Flag)
+    [Anonymous Symbol]                       0x08000cfc   Section        0  timebase.o(.text.Timebase_DownCounter_SS_Continuous_Expired_Event)
+    [Anonymous Symbol]                       0x08000d48   Section        0  timebase.o(.text.Timebase_DownCounter_SS_Get_EndValueSec)
+    [Anonymous Symbol]                       0x08000d6c   Section        0  timebase.o(.text.Timebase_DownCounter_SS_Get_EndValueSubSec)
+    [Anonymous Symbol]                       0x08000d90   Section        0  timebase.o(.text.Timebase_DownCounter_SS_Get_ReloadValue)
+    [Anonymous Symbol]                       0x08000db4   Section        0  timebase.o(.text.Timebase_DownCounter_SS_Get_Status)
+    [Anonymous Symbol]                       0x08000ddc   Section        0  timebase.o(.text.Timebase_DownCounter_SS_Get_Value)
+    [Anonymous Symbol]                       0x08000e00   Section        0  timebase.o(.text.Timebase_DownCounter_SS_Reset)
+    [Anonymous Symbol]                       0x08000e48   Section        0  timebase.o(.text.Timebase_DownCounter_SS_Reset_All)
+    [Anonymous Symbol]                       0x08000e78   Section        0  timebase.o(.text.Timebase_DownCounter_SS_Set_EndValueSec)
+    [Anonymous Symbol]                       0x08000ea0   Section        0  timebase.o(.text.Timebase_DownCounter_SS_Set_EndValueSubSec)
+    [Anonymous Symbol]                       0x08000ec8   Section        0  timebase.o(.text.Timebase_DownCounter_SS_Set_ReloadValue)
+    [Anonymous Symbol]                       0x08000ef0   Section        0  timebase.o(.text.Timebase_DownCounter_SS_Set_Securely)
+    [Anonymous Symbol]                       0x08000fac   Section        0  timebase.o(.text.Timebase_DownCounter_SS_Set_Status)
+    [Anonymous Symbol]                       0x08000fe8   Section        0  timebase.o(.text.Timebase_DownCounter_SS_Set_Value)
+    [Anonymous Symbol]                       0x08001010   Section        0  timebase.o(.text.Timebase_DownCounter_SS_Start)
+    [Anonymous Symbol]                       0x08001038   Section        0  timebase.o(.text.Timebase_DownCounter_SS_Update)
+    [Anonymous Symbol]                       0x08001140   Section        0  timebase.o(.text.Timebase_DownCounter_SS_Update_All)
+    [Anonymous Symbol]                       0x08001170   Section        0  timebase.o(.text.Timebase_DownCounter_Set_EndValue)
+    [Anonymous Symbol]                       0x08001198   Section        0  timebase.o(.text.Timebase_DownCounter_Set_ReloadValue)
+    [Anonymous Symbol]                       0x080011c0   Section        0  timebase.o(.text.Timebase_DownCounter_Set_Status)
+    [Anonymous Symbol]                       0x080011fc   Section        0  timebase.o(.text.Timebase_DownCounter_Set_Value)
+    [Anonymous Symbol]                       0x08001224   Section        0  timebase.o(.text.Timebase_DownCounter_Update)
+    [Anonymous Symbol]                       0x080012c0   Section        0  timebase.o(.text.Timebase_DownCounter_Update_All)
+    [Anonymous Symbol]                       0x080012f0   Section        0  timebase.o(.text.Timebase_ISR_Executables)
+    [Anonymous Symbol]                       0x0800134c   Section        0  timebase.o(.text.Timebase_Init)
+    [Anonymous Symbol]                       0x08001368   Section        0  timebase.o(.text.Timebase_Main_Loop_Executables)
+    [Anonymous Symbol]                       0x080013e8   Section        0  timebase.o(.text.Timebase_Reset)
+    [Anonymous Symbol]                       0x080013f4   Section        0  timebase.o(.text.Timebase_Struct_Init)
+    [Anonymous Symbol]                       0x0800155c   Section        0  timebase.o(.text.Timebase_Timer_Enable)
+    [Anonymous Symbol]                       0x08001600   Section        0  timebase.o(.text.Timebase_Timer_Get_Seconds)
+    [Anonymous Symbol]                       0x08001610   Section        0  timebase.o(.text.Timebase_Timer_Get_SubSeconds)
+    [Anonymous Symbol]                       0x08001620   Section        0  timebase.o(.text.Timebase_Timer_Sync_With_Shadow_Variables)
+    [Anonymous Symbol]                       0x08001668   Section        0  debug.o(.text.USART2_IRQHandler)
+    __NVIC_EnableIRQ                         0x080016d9   Thumb Code    48  debug.o(.text.__NVIC_EnableIRQ)
+    [Anonymous Symbol]                       0x080016d8   Section        0  debug.o(.text.__NVIC_EnableIRQ)
+    __NVIC_EnableIRQ                         0x08001709   Thumb Code    48  timebase.o(.text.__NVIC_EnableIRQ)
+    [Anonymous Symbol]                       0x08001708   Section        0  timebase.o(.text.__NVIC_EnableIRQ)
+    __NVIC_SetPriority                       0x08001739   Thumb Code    66  debug.o(.text.__NVIC_SetPriority)
+    [Anonymous Symbol]                       0x08001738   Section        0  debug.o(.text.__NVIC_SetPriority)
+    __NVIC_SetPriority                       0x0800177d   Thumb Code    66  timebase.o(.text.__NVIC_SetPriority)
+    [Anonymous Symbol]                       0x0800177c   Section        0  timebase.o(.text.__NVIC_SetPriority)
+    [Anonymous Symbol]                       0x080017c0   Section        0  main.o(.text.main)
+    $v0                                      0x0800183a   Number         0  fpinit.o(x$fpl$fpinit)
+    x$fpl$fpinit                             0x0800183a   Section       26  fpinit.o(x$fpl$fpinit)
+    RCC_Get_APB1_Clock.apb_presc_table       0x08001854   Data           8  rcc.o(.rodata.RCC_Get_APB1_Clock.apb_presc_table)
+    [Anonymous Symbol]                       0x08001854   Section        0  rcc.o(.rodata.RCC_Get_APB1_Clock.apb_presc_table)
+    RCC_Get_APB2_Clock.apb_presc_table       0x0800185c   Data           8  rcc.o(.rodata.RCC_Get_APB2_Clock.apb_presc_table)
+    [Anonymous Symbol]                       0x0800185c   Section        0  rcc.o(.rodata.RCC_Get_APB2_Clock.apb_presc_table)
+    RCC_Get_HCLK.ahb_presc_table             0x08001864   Data          16  rcc.o(.rodata.RCC_Get_HCLK.ahb_presc_table)
+    [Anonymous Symbol]                       0x08001864   Section        0  rcc.o(.rodata.RCC_Get_HCLK.ahb_presc_table)
+    .L.str                                   0x08001874   Data          13  main.o(.rodata.str1.1)
+    [Anonymous Symbol]                       0x08001874   Section        0  main.o(.rodata.str1.1)
     .bss                                     0x20000000   Section       96  libspace.o(.bss)
-    Heap_Mem                                 0x200000f0   Data         512  startup_stm32f401xc.o(HEAP)
-    HEAP                                     0x200000f0   Section      512  startup_stm32f401xc.o(HEAP)
-    Stack_Mem                                0x200002f0   Data        1024  startup_stm32f401xc.o(STACK)
-    STACK                                    0x200002f0   Section     1024  startup_stm32f401xc.o(STACK)
-    __initial_sp                             0x200006f0   Data           0  startup_stm32f401xc.o(STACK)
+    Heap_Mem                                 0x20000410   Data         512  startup_stm32f401xc.o(HEAP)
+    HEAP                                     0x20000410   Section      512  startup_stm32f401xc.o(HEAP)
+    Stack_Mem                                0x20000610   Data        1024  startup_stm32f401xc.o(STACK)
+    STACK                                    0x20000610   Section     1024  startup_stm32f401xc.o(STACK)
+    __initial_sp                             0x20000a10   Data           0  startup_stm32f401xc.o(STACK)
 
     Global Symbols
 
@@ -750,7 +1247,6 @@ Image Symbol Table
     TAMP_STAMP_IRQHandler                    0x0800025f   Thumb Code     0  startup_stm32f401xc.o(.text)
     TIM1_BRK_TIM9_IRQHandler                 0x0800025f   Thumb Code     0  startup_stm32f401xc.o(.text)
     TIM1_CC_IRQHandler                       0x0800025f   Thumb Code     0  startup_stm32f401xc.o(.text)
-    TIM1_TRG_COM_TIM11_IRQHandler            0x0800025f   Thumb Code     0  startup_stm32f401xc.o(.text)
     TIM2_IRQHandler                          0x0800025f   Thumb Code     0  startup_stm32f401xc.o(.text)
     TIM3_IRQHandler                          0x0800025f   Thumb Code     0  startup_stm32f401xc.o(.text)
     TIM4_IRQHandler                          0x0800025f   Thumb Code     0  startup_stm32f401xc.o(.text)
@@ -795,17 +1291,63 @@ Image Symbol Table
     RCC_HSE_Clock_Config                     0x080009e5   Thumb Code   178  rcc.o(.text.RCC_HSE_Clock_Config)
     RCC_LSE_Clock_Config                     0x08000a99   Thumb Code   104  rcc.o(.text.RCC_LSE_Clock_Config)
     SystemInit                               0x08000b01   Thumb Code    18  system_stm32f4xx.o(.text.SystemInit)
-    TIM1_UP_TIM10_IRQHandler                 0x08000b15   Thumb Code    86  debug.o(.text.TIM1_UP_TIM10_IRQHandler)
-    USART2_IRQHandler                        0x08000b6d   Thumb Code   112  debug.o(.text.USART2_IRQHandler)
-    main                                     0x08000c51   Thumb Code    88  main.o(.text.main)
-    _fp_init                                 0x08000ca9   Thumb Code    26  fpinit.o(x$fpl$fpinit)
-    __fplib_config_fpu_vfp                   0x08000cc1   Thumb Code     0  fpinit.o(x$fpl$fpinit)
-    __fplib_config_pureend_doubles           0x08000cc1   Thumb Code     0  fpinit.o(x$fpl$fpinit)
-    Region$$Table$$Base                      0x08000cf0   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x08000d00   Number         0  anon$$obj.o(Region$$Table)
+    TIM1_TRG_COM_TIM11_IRQHandler            0x08000b15   Thumb Code    24  timebase.o(.text.TIM1_TRG_COM_TIM11_IRQHandler)
+    TIM1_UP_TIM10_IRQHandler                 0x08000b2d   Thumb Code    86  debug.o(.text.TIM1_UP_TIM10_IRQHandler)
+    Timebase_Atomic_Operation_End            0x08000b85   Thumb Code     4  timebase.o(.text.Timebase_Atomic_Operation_End)
+    Timebase_Atomic_Operation_Start          0x08000b89   Thumb Code     4  timebase.o(.text.Timebase_Atomic_Operation_Start)
+    Timebase_DownCounter_Clear_Period_Flag   0x08000b8d   Thumb Code    44  timebase.o(.text.Timebase_DownCounter_Clear_Period_Flag)
+    Timebase_DownCounter_Get_EndValue        0x08000bb9   Thumb Code    36  timebase.o(.text.Timebase_DownCounter_Get_EndValue)
+    Timebase_DownCounter_Get_ReloadValue     0x08000bdd   Thumb Code    36  timebase.o(.text.Timebase_DownCounter_Get_ReloadValue)
+    Timebase_DownCounter_Get_Status          0x08000c01   Thumb Code    40  timebase.o(.text.Timebase_DownCounter_Get_Status)
+    Timebase_DownCounter_Get_Value           0x08000c29   Thumb Code    36  timebase.o(.text.Timebase_DownCounter_Get_Value)
+    Timebase_DownCounter_Reset               0x08000c4d   Thumb Code    62  timebase.o(.text.Timebase_DownCounter_Reset)
+    Timebase_DownCounter_Reset_All           0x08000c8d   Thumb Code    48  timebase.o(.text.Timebase_DownCounter_Reset_All)
+    Timebase_DownCounter_SS_Clear_All_Flags  0x08000cbd   Thumb Code    20  timebase.o(.text.Timebase_DownCounter_SS_Clear_All_Flags)
+    Timebase_DownCounter_SS_Clear_Period_Flag 0x08000cd1   Thumb Code    44  timebase.o(.text.Timebase_DownCounter_SS_Clear_Period_Flag)
+    Timebase_DownCounter_SS_Continuous_Expired_Event 0x08000cfd   Thumb Code    74  timebase.o(.text.Timebase_DownCounter_SS_Continuous_Expired_Event)
+    Timebase_DownCounter_SS_Get_EndValueSec  0x08000d49   Thumb Code    34  timebase.o(.text.Timebase_DownCounter_SS_Get_EndValueSec)
+    Timebase_DownCounter_SS_Get_EndValueSubSec 0x08000d6d   Thumb Code    34  timebase.o(.text.Timebase_DownCounter_SS_Get_EndValueSubSec)
+    Timebase_DownCounter_SS_Get_ReloadValue  0x08000d91   Thumb Code    34  timebase.o(.text.Timebase_DownCounter_SS_Get_ReloadValue)
+    Timebase_DownCounter_SS_Get_Status       0x08000db5   Thumb Code    40  timebase.o(.text.Timebase_DownCounter_SS_Get_Status)
+    Timebase_DownCounter_SS_Get_Value        0x08000ddd   Thumb Code    34  timebase.o(.text.Timebase_DownCounter_SS_Get_Value)
+    Timebase_DownCounter_SS_Reset            0x08000e01   Thumb Code    72  timebase.o(.text.Timebase_DownCounter_SS_Reset)
+    Timebase_DownCounter_SS_Reset_All        0x08000e49   Thumb Code    48  timebase.o(.text.Timebase_DownCounter_SS_Reset_All)
+    Timebase_DownCounter_SS_Set_EndValueSec  0x08000e79   Thumb Code    38  timebase.o(.text.Timebase_DownCounter_SS_Set_EndValueSec)
+    Timebase_DownCounter_SS_Set_EndValueSubSec 0x08000ea1   Thumb Code    38  timebase.o(.text.Timebase_DownCounter_SS_Set_EndValueSubSec)
+    Timebase_DownCounter_SS_Set_ReloadValue  0x08000ec9   Thumb Code    38  timebase.o(.text.Timebase_DownCounter_SS_Set_ReloadValue)
+    Timebase_DownCounter_SS_Set_Securely     0x08000ef1   Thumb Code   186  timebase.o(.text.Timebase_DownCounter_SS_Set_Securely)
+    Timebase_DownCounter_SS_Set_Status       0x08000fad   Thumb Code    60  timebase.o(.text.Timebase_DownCounter_SS_Set_Status)
+    Timebase_DownCounter_SS_Set_Value        0x08000fe9   Thumb Code    38  timebase.o(.text.Timebase_DownCounter_SS_Set_Value)
+    Timebase_DownCounter_SS_Start            0x08001011   Thumb Code    38  timebase.o(.text.Timebase_DownCounter_SS_Start)
+    Timebase_DownCounter_SS_Update           0x08001039   Thumb Code   262  timebase.o(.text.Timebase_DownCounter_SS_Update)
+    Timebase_DownCounter_SS_Update_All       0x08001141   Thumb Code    48  timebase.o(.text.Timebase_DownCounter_SS_Update_All)
+    Timebase_DownCounter_Set_EndValue        0x08001171   Thumb Code    40  timebase.o(.text.Timebase_DownCounter_Set_EndValue)
+    Timebase_DownCounter_Set_ReloadValue     0x08001199   Thumb Code    40  timebase.o(.text.Timebase_DownCounter_Set_ReloadValue)
+    Timebase_DownCounter_Set_Status          0x080011c1   Thumb Code    60  timebase.o(.text.Timebase_DownCounter_Set_Status)
+    Timebase_DownCounter_Set_Value           0x080011fd   Thumb Code    40  timebase.o(.text.Timebase_DownCounter_Set_Value)
+    Timebase_DownCounter_Update              0x08001225   Thumb Code   156  timebase.o(.text.Timebase_DownCounter_Update)
+    Timebase_DownCounter_Update_All          0x080012c1   Thumb Code    48  timebase.o(.text.Timebase_DownCounter_Update_All)
+    Timebase_ISR_Executables                 0x080012f1   Thumb Code    92  timebase.o(.text.Timebase_ISR_Executables)
+    Timebase_Init                            0x0800134d   Thumb Code    28  timebase.o(.text.Timebase_Init)
+    Timebase_Main_Loop_Executables           0x08001369   Thumb Code   128  timebase.o(.text.Timebase_Main_Loop_Executables)
+    Timebase_Reset                           0x080013e9   Thumb Code    12  timebase.o(.text.Timebase_Reset)
+    Timebase_Struct_Init                     0x080013f5   Thumb Code   360  timebase.o(.text.Timebase_Struct_Init)
+    Timebase_Timer_Enable                    0x0800155d   Thumb Code   164  timebase.o(.text.Timebase_Timer_Enable)
+    Timebase_Timer_Get_Seconds               0x08001601   Thumb Code    14  timebase.o(.text.Timebase_Timer_Get_Seconds)
+    Timebase_Timer_Get_SubSeconds            0x08001611   Thumb Code    14  timebase.o(.text.Timebase_Timer_Get_SubSeconds)
+    Timebase_Timer_Sync_With_Shadow_Variables 0x08001621   Thumb Code    72  timebase.o(.text.Timebase_Timer_Sync_With_Shadow_Variables)
+    USART2_IRQHandler                        0x08001669   Thumb Code   112  debug.o(.text.USART2_IRQHandler)
+    main                                     0x080017c1   Thumb Code   122  main.o(.text.main)
+    _fp_init                                 0x0800183b   Thumb Code    26  fpinit.o(x$fpl$fpinit)
+    __fplib_config_fpu_vfp                   0x08001853   Thumb Code     0  fpinit.o(x$fpl$fpinit)
+    __fplib_config_pureend_doubles           0x08001853   Thumb Code     0  fpinit.o(x$fpl$fpinit)
+    Region$$Table$$Base                      0x08001884   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x08001894   Number         0  anon$$obj.o(Region$$Table)
     __libspace_start                         0x20000000   Data          96  libspace.o(.bss)
     Debug                                    0x20000060   Data         141  debug.o(.bss.Debug)
     __temporary_stack_top$libspace           0x20000060   Data           0  libspace.o(.bss)
+    Timebase                                 0x200000f0   Data           4  timebase.o(.bss.Timebase)
+    Timebase_type                            0x200000f4   Data         792  timebase.o(.bss.Timebase_type)
 
 
 
@@ -815,70 +1357,70 @@ Memory Map of the image
 
   Image Entry point : 0x08000195
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00000d00, Max: 0x00040000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00001894, Max: 0x00040000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00000d00, Max: 0x00040000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00001894, Max: 0x00040000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x08000000   0x08000000   0x00000194   Data   RO          174    RESET               startup_stm32f401xc.o
-    0x08000194   0x08000194   0x00000008   Code   RO          199  * !!!main             c_w.l(__main.o)
-    0x0800019c   0x0800019c   0x0000005c   Code   RO          364    !!!scatter          c_w.l(__scatter.o)
-    0x080001f8   0x080001f8   0x00000002   Code   RO          365    !!handler_null      c_w.l(__scatter.o)
+    0x08000000   0x08000000   0x00000194   Data   RO          377    RESET               startup_stm32f401xc.o
+    0x08000194   0x08000194   0x00000008   Code   RO          402  * !!!main             c_w.l(__main.o)
+    0x0800019c   0x0800019c   0x0000005c   Code   RO          567    !!!scatter          c_w.l(__scatter.o)
+    0x080001f8   0x080001f8   0x00000002   Code   RO          568    !!handler_null      c_w.l(__scatter.o)
     0x080001fa   0x080001fa   0x00000002   PAD
-    0x080001fc   0x080001fc   0x0000001c   Code   RO          368    !!handler_zi        c_w.l(__scatter_zi.o)
-    0x08000218   0x08000218   0x00000002   Code   RO          226    .ARM.Collect$$libinit$$00000000  c_w.l(libinit.o)
-    0x0800021a   0x0800021a   0x00000004   Code   RO          232    .ARM.Collect$$libinit$$00000001  c_w.l(libinit2.o)
-    0x0800021e   0x0800021e   0x00000000   Code   RO          235    .ARM.Collect$$libinit$$00000004  c_w.l(libinit2.o)
-    0x0800021e   0x0800021e   0x00000000   Code   RO          237    .ARM.Collect$$libinit$$00000006  c_w.l(libinit2.o)
-    0x0800021e   0x0800021e   0x00000000   Code   RO          240    .ARM.Collect$$libinit$$0000000C  c_w.l(libinit2.o)
-    0x0800021e   0x0800021e   0x00000000   Code   RO          242    .ARM.Collect$$libinit$$0000000E  c_w.l(libinit2.o)
-    0x0800021e   0x0800021e   0x00000000   Code   RO          244    .ARM.Collect$$libinit$$00000010  c_w.l(libinit2.o)
-    0x0800021e   0x0800021e   0x00000000   Code   RO          247    .ARM.Collect$$libinit$$00000013  c_w.l(libinit2.o)
-    0x0800021e   0x0800021e   0x00000000   Code   RO          249    .ARM.Collect$$libinit$$00000015  c_w.l(libinit2.o)
-    0x0800021e   0x0800021e   0x00000000   Code   RO          251    .ARM.Collect$$libinit$$00000017  c_w.l(libinit2.o)
-    0x0800021e   0x0800021e   0x00000000   Code   RO          253    .ARM.Collect$$libinit$$00000019  c_w.l(libinit2.o)
-    0x0800021e   0x0800021e   0x00000000   Code   RO          255    .ARM.Collect$$libinit$$0000001B  c_w.l(libinit2.o)
-    0x0800021e   0x0800021e   0x00000000   Code   RO          257    .ARM.Collect$$libinit$$0000001D  c_w.l(libinit2.o)
-    0x0800021e   0x0800021e   0x00000000   Code   RO          259    .ARM.Collect$$libinit$$0000001F  c_w.l(libinit2.o)
-    0x0800021e   0x0800021e   0x00000000   Code   RO          261    .ARM.Collect$$libinit$$00000021  c_w.l(libinit2.o)
-    0x0800021e   0x0800021e   0x00000000   Code   RO          263    .ARM.Collect$$libinit$$00000023  c_w.l(libinit2.o)
-    0x0800021e   0x0800021e   0x00000000   Code   RO          265    .ARM.Collect$$libinit$$00000025  c_w.l(libinit2.o)
-    0x0800021e   0x0800021e   0x00000000   Code   RO          267    .ARM.Collect$$libinit$$00000027  c_w.l(libinit2.o)
-    0x0800021e   0x0800021e   0x00000000   Code   RO          271    .ARM.Collect$$libinit$$0000002E  c_w.l(libinit2.o)
-    0x0800021e   0x0800021e   0x00000000   Code   RO          273    .ARM.Collect$$libinit$$00000030  c_w.l(libinit2.o)
-    0x0800021e   0x0800021e   0x00000000   Code   RO          275    .ARM.Collect$$libinit$$00000032  c_w.l(libinit2.o)
-    0x0800021e   0x0800021e   0x00000000   Code   RO          277    .ARM.Collect$$libinit$$00000034  c_w.l(libinit2.o)
-    0x0800021e   0x0800021e   0x00000002   Code   RO          278    .ARM.Collect$$libinit$$00000035  c_w.l(libinit2.o)
-    0x08000220   0x08000220   0x00000002   Code   RO          300    .ARM.Collect$$libshutdown$$00000000  c_w.l(libshutdown.o)
-    0x08000222   0x08000222   0x00000000   Code   RO          315    .ARM.Collect$$libshutdown$$00000002  c_w.l(libshutdown2.o)
-    0x08000222   0x08000222   0x00000000   Code   RO          317    .ARM.Collect$$libshutdown$$00000004  c_w.l(libshutdown2.o)
-    0x08000222   0x08000222   0x00000000   Code   RO          320    .ARM.Collect$$libshutdown$$00000007  c_w.l(libshutdown2.o)
-    0x08000222   0x08000222   0x00000000   Code   RO          323    .ARM.Collect$$libshutdown$$0000000A  c_w.l(libshutdown2.o)
-    0x08000222   0x08000222   0x00000000   Code   RO          325    .ARM.Collect$$libshutdown$$0000000C  c_w.l(libshutdown2.o)
-    0x08000222   0x08000222   0x00000000   Code   RO          328    .ARM.Collect$$libshutdown$$0000000F  c_w.l(libshutdown2.o)
-    0x08000222   0x08000222   0x00000002   Code   RO          329    .ARM.Collect$$libshutdown$$00000010  c_w.l(libshutdown2.o)
-    0x08000224   0x08000224   0x00000000   Code   RO          201    .ARM.Collect$$rtentry$$00000000  c_w.l(__rtentry.o)
-    0x08000224   0x08000224   0x00000000   Code   RO          203    .ARM.Collect$$rtentry$$00000002  c_w.l(__rtentry2.o)
-    0x08000224   0x08000224   0x00000006   Code   RO          215    .ARM.Collect$$rtentry$$00000004  c_w.l(__rtentry4.o)
-    0x0800022a   0x0800022a   0x00000000   Code   RO          205    .ARM.Collect$$rtentry$$00000009  c_w.l(__rtentry2.o)
-    0x0800022a   0x0800022a   0x00000004   Code   RO          206    .ARM.Collect$$rtentry$$0000000A  c_w.l(__rtentry2.o)
-    0x0800022e   0x0800022e   0x00000000   Code   RO          208    .ARM.Collect$$rtentry$$0000000C  c_w.l(__rtentry2.o)
-    0x0800022e   0x0800022e   0x00000008   Code   RO          209    .ARM.Collect$$rtentry$$0000000D  c_w.l(__rtentry2.o)
-    0x08000236   0x08000236   0x00000002   Code   RO          230    .ARM.Collect$$rtexit$$00000000  c_w.l(rtexit.o)
-    0x08000238   0x08000238   0x00000000   Code   RO          280    .ARM.Collect$$rtexit$$00000002  c_w.l(rtexit2.o)
-    0x08000238   0x08000238   0x00000004   Code   RO          281    .ARM.Collect$$rtexit$$00000003  c_w.l(rtexit2.o)
-    0x0800023c   0x0800023c   0x00000006   Code   RO          282    .ARM.Collect$$rtexit$$00000004  c_w.l(rtexit2.o)
+    0x080001fc   0x080001fc   0x0000001c   Code   RO          571    !!handler_zi        c_w.l(__scatter_zi.o)
+    0x08000218   0x08000218   0x00000002   Code   RO          429    .ARM.Collect$$libinit$$00000000  c_w.l(libinit.o)
+    0x0800021a   0x0800021a   0x00000004   Code   RO          435    .ARM.Collect$$libinit$$00000001  c_w.l(libinit2.o)
+    0x0800021e   0x0800021e   0x00000000   Code   RO          438    .ARM.Collect$$libinit$$00000004  c_w.l(libinit2.o)
+    0x0800021e   0x0800021e   0x00000000   Code   RO          440    .ARM.Collect$$libinit$$00000006  c_w.l(libinit2.o)
+    0x0800021e   0x0800021e   0x00000000   Code   RO          443    .ARM.Collect$$libinit$$0000000C  c_w.l(libinit2.o)
+    0x0800021e   0x0800021e   0x00000000   Code   RO          445    .ARM.Collect$$libinit$$0000000E  c_w.l(libinit2.o)
+    0x0800021e   0x0800021e   0x00000000   Code   RO          447    .ARM.Collect$$libinit$$00000010  c_w.l(libinit2.o)
+    0x0800021e   0x0800021e   0x00000000   Code   RO          450    .ARM.Collect$$libinit$$00000013  c_w.l(libinit2.o)
+    0x0800021e   0x0800021e   0x00000000   Code   RO          452    .ARM.Collect$$libinit$$00000015  c_w.l(libinit2.o)
+    0x0800021e   0x0800021e   0x00000000   Code   RO          454    .ARM.Collect$$libinit$$00000017  c_w.l(libinit2.o)
+    0x0800021e   0x0800021e   0x00000000   Code   RO          456    .ARM.Collect$$libinit$$00000019  c_w.l(libinit2.o)
+    0x0800021e   0x0800021e   0x00000000   Code   RO          458    .ARM.Collect$$libinit$$0000001B  c_w.l(libinit2.o)
+    0x0800021e   0x0800021e   0x00000000   Code   RO          460    .ARM.Collect$$libinit$$0000001D  c_w.l(libinit2.o)
+    0x0800021e   0x0800021e   0x00000000   Code   RO          462    .ARM.Collect$$libinit$$0000001F  c_w.l(libinit2.o)
+    0x0800021e   0x0800021e   0x00000000   Code   RO          464    .ARM.Collect$$libinit$$00000021  c_w.l(libinit2.o)
+    0x0800021e   0x0800021e   0x00000000   Code   RO          466    .ARM.Collect$$libinit$$00000023  c_w.l(libinit2.o)
+    0x0800021e   0x0800021e   0x00000000   Code   RO          468    .ARM.Collect$$libinit$$00000025  c_w.l(libinit2.o)
+    0x0800021e   0x0800021e   0x00000000   Code   RO          470    .ARM.Collect$$libinit$$00000027  c_w.l(libinit2.o)
+    0x0800021e   0x0800021e   0x00000000   Code   RO          474    .ARM.Collect$$libinit$$0000002E  c_w.l(libinit2.o)
+    0x0800021e   0x0800021e   0x00000000   Code   RO          476    .ARM.Collect$$libinit$$00000030  c_w.l(libinit2.o)
+    0x0800021e   0x0800021e   0x00000000   Code   RO          478    .ARM.Collect$$libinit$$00000032  c_w.l(libinit2.o)
+    0x0800021e   0x0800021e   0x00000000   Code   RO          480    .ARM.Collect$$libinit$$00000034  c_w.l(libinit2.o)
+    0x0800021e   0x0800021e   0x00000002   Code   RO          481    .ARM.Collect$$libinit$$00000035  c_w.l(libinit2.o)
+    0x08000220   0x08000220   0x00000002   Code   RO          503    .ARM.Collect$$libshutdown$$00000000  c_w.l(libshutdown.o)
+    0x08000222   0x08000222   0x00000000   Code   RO          518    .ARM.Collect$$libshutdown$$00000002  c_w.l(libshutdown2.o)
+    0x08000222   0x08000222   0x00000000   Code   RO          520    .ARM.Collect$$libshutdown$$00000004  c_w.l(libshutdown2.o)
+    0x08000222   0x08000222   0x00000000   Code   RO          523    .ARM.Collect$$libshutdown$$00000007  c_w.l(libshutdown2.o)
+    0x08000222   0x08000222   0x00000000   Code   RO          526    .ARM.Collect$$libshutdown$$0000000A  c_w.l(libshutdown2.o)
+    0x08000222   0x08000222   0x00000000   Code   RO          528    .ARM.Collect$$libshutdown$$0000000C  c_w.l(libshutdown2.o)
+    0x08000222   0x08000222   0x00000000   Code   RO          531    .ARM.Collect$$libshutdown$$0000000F  c_w.l(libshutdown2.o)
+    0x08000222   0x08000222   0x00000002   Code   RO          532    .ARM.Collect$$libshutdown$$00000010  c_w.l(libshutdown2.o)
+    0x08000224   0x08000224   0x00000000   Code   RO          404    .ARM.Collect$$rtentry$$00000000  c_w.l(__rtentry.o)
+    0x08000224   0x08000224   0x00000000   Code   RO          406    .ARM.Collect$$rtentry$$00000002  c_w.l(__rtentry2.o)
+    0x08000224   0x08000224   0x00000006   Code   RO          418    .ARM.Collect$$rtentry$$00000004  c_w.l(__rtentry4.o)
+    0x0800022a   0x0800022a   0x00000000   Code   RO          408    .ARM.Collect$$rtentry$$00000009  c_w.l(__rtentry2.o)
+    0x0800022a   0x0800022a   0x00000004   Code   RO          409    .ARM.Collect$$rtentry$$0000000A  c_w.l(__rtentry2.o)
+    0x0800022e   0x0800022e   0x00000000   Code   RO          411    .ARM.Collect$$rtentry$$0000000C  c_w.l(__rtentry2.o)
+    0x0800022e   0x0800022e   0x00000008   Code   RO          412    .ARM.Collect$$rtentry$$0000000D  c_w.l(__rtentry2.o)
+    0x08000236   0x08000236   0x00000002   Code   RO          433    .ARM.Collect$$rtexit$$00000000  c_w.l(rtexit.o)
+    0x08000238   0x08000238   0x00000000   Code   RO          483    .ARM.Collect$$rtexit$$00000002  c_w.l(rtexit2.o)
+    0x08000238   0x08000238   0x00000004   Code   RO          484    .ARM.Collect$$rtexit$$00000003  c_w.l(rtexit2.o)
+    0x0800023c   0x0800023c   0x00000006   Code   RO          485    .ARM.Collect$$rtexit$$00000004  c_w.l(rtexit2.o)
     0x08000242   0x08000242   0x00000002   PAD
-    0x08000244   0x08000244   0x00000040   Code   RO          175    .text               startup_stm32f401xc.o
-    0x08000284   0x08000284   0x00000006   Code   RO          197    .text               c_w.l(heapauxi.o)
-    0x0800028a   0x0800028a   0x0000004a   Code   RO          217    .text               c_w.l(sys_stackheap_outer.o)
-    0x080002d4   0x080002d4   0x00000012   Code   RO          219    .text               c_w.l(exit.o)
+    0x08000244   0x08000244   0x00000040   Code   RO          378    .text               startup_stm32f401xc.o
+    0x08000284   0x08000284   0x00000006   Code   RO          400    .text               c_w.l(heapauxi.o)
+    0x0800028a   0x0800028a   0x0000004a   Code   RO          420    .text               c_w.l(sys_stackheap_outer.o)
+    0x080002d4   0x080002d4   0x00000012   Code   RO          422    .text               c_w.l(exit.o)
     0x080002e6   0x080002e6   0x00000002   PAD
-    0x080002e8   0x080002e8   0x00000008   Code   RO          227    .text               c_w.l(libspace.o)
-    0x080002f0   0x080002f0   0x0000000c   Code   RO          290    .text               c_w.l(sys_exit.o)
-    0x080002fc   0x080002fc   0x00000002   Code   RO          305    .text               c_w.l(use_no_semi.o)
-    0x080002fe   0x080002fe   0x00000000   Code   RO          307    .text               c_w.l(indicate_semi.o)
+    0x080002e8   0x080002e8   0x00000008   Code   RO          430    .text               c_w.l(libspace.o)
+    0x080002f0   0x080002f0   0x0000000c   Code   RO          493    .text               c_w.l(sys_exit.o)
+    0x080002fc   0x080002fc   0x00000002   Code   RO          508    .text               c_w.l(use_no_semi.o)
+    0x080002fe   0x080002fe   0x00000000   Code   RO          510    .text               c_w.l(indicate_semi.o)
     0x080002fe   0x080002fe   0x00000002   PAD
     0x08000300   0x08000300   0x0000000e   Code   RO           73    .text.Debug_Counter_Reset  debug.o
     0x0800030e   0x0800030e   0x00000002   PAD
@@ -908,33 +1450,98 @@ Memory Map of the image
     0x080009e4   0x080009e4   0x000000b2   Code   RO           31    .text.RCC_HSE_Clock_Config  rcc.o
     0x08000a96   0x08000a96   0x00000002   PAD
     0x08000a98   0x08000a98   0x00000068   Code   RO           33    .text.RCC_LSE_Clock_Config  rcc.o
-    0x08000b00   0x08000b00   0x00000012   Code   RO          182    .text.SystemInit    system_stm32f4xx.o
+    0x08000b00   0x08000b00   0x00000012   Code   RO          385    .text.SystemInit    system_stm32f4xx.o
     0x08000b12   0x08000b12   0x00000002   PAD
-    0x08000b14   0x08000b14   0x00000056   Code   RO           75    .text.TIM1_UP_TIM10_IRQHandler  debug.o
-    0x08000b6a   0x08000b6a   0x00000002   PAD
-    0x08000b6c   0x08000b6c   0x00000070   Code   RO           83    .text.USART2_IRQHandler  debug.o
-    0x08000bdc   0x08000bdc   0x00000030   Code   RO           59    .text.__NVIC_EnableIRQ  debug.o
-    0x08000c0c   0x08000c0c   0x00000042   Code   RO           61    .text.__NVIC_SetPriority  debug.o
-    0x08000c4e   0x08000c4e   0x00000002   PAD
-    0x08000c50   0x08000c50   0x00000058   Code   RO            2    .text.main          main.o
-    0x08000ca8   0x08000ca8   0x0000001a   Code   RO          288    x$fpl$fpinit        fz_wm.l(fpinit.o)
-    0x08000cc2   0x08000cc2   0x00000008   Data   RO           44    .rodata.RCC_Get_APB1_Clock.apb_presc_table  rcc.o
-    0x08000cca   0x08000cca   0x00000008   Data   RO           45    .rodata.RCC_Get_APB2_Clock.apb_presc_table  rcc.o
-    0x08000cd2   0x08000cd2   0x00000010   Data   RO           43    .rodata.RCC_Get_HCLK.ahb_presc_table  rcc.o
-    0x08000ce2   0x08000ce2   0x0000000d   Data   RO            4    .rodata.str1.1      main.o
-    0x08000cef   0x08000cef   0x00000001   PAD
-    0x08000cf0   0x08000cf0   0x00000010   Data   RO          363    Region$$Table       anon$$obj.o
+    0x08000b14   0x08000b14   0x00000018   Code   RO          187    .text.TIM1_TRG_COM_TIM11_IRQHandler  timebase.o
+    0x08000b2c   0x08000b2c   0x00000056   Code   RO           75    .text.TIM1_UP_TIM10_IRQHandler  debug.o
+    0x08000b82   0x08000b82   0x00000002   PAD
+    0x08000b84   0x08000b84   0x00000004   Code   RO          185    .text.Timebase_Atomic_Operation_End  timebase.o
+    0x08000b88   0x08000b88   0x00000004   Code   RO          183    .text.Timebase_Atomic_Operation_Start  timebase.o
+    0x08000b8c   0x08000b8c   0x0000002c   Code   RO          315    .text.Timebase_DownCounter_Clear_Period_Flag  timebase.o
+    0x08000bb8   0x08000bb8   0x00000024   Code   RO          303    .text.Timebase_DownCounter_Get_EndValue  timebase.o
+    0x08000bdc   0x08000bdc   0x00000024   Code   RO          317    .text.Timebase_DownCounter_Get_ReloadValue  timebase.o
+    0x08000c00   0x08000c00   0x00000028   Code   RO          295    .text.Timebase_DownCounter_Get_Status  timebase.o
+    0x08000c28   0x08000c28   0x00000024   Code   RO          299    .text.Timebase_DownCounter_Get_Value  timebase.o
+    0x08000c4c   0x08000c4c   0x0000003e   Code   RO          321    .text.Timebase_DownCounter_Reset  timebase.o
+    0x08000c8a   0x08000c8a   0x00000002   PAD
+    0x08000c8c   0x08000c8c   0x00000030   Code   RO          353    .text.Timebase_DownCounter_Reset_All  timebase.o
+    0x08000cbc   0x08000cbc   0x00000014   Code   RO          263    .text.Timebase_DownCounter_SS_Clear_All_Flags  timebase.o
+    0x08000cd0   0x08000cd0   0x0000002c   Code   RO          255    .text.Timebase_DownCounter_SS_Clear_Period_Flag  timebase.o
+    0x08000cfc   0x08000cfc   0x0000004a   Code   RO          281    .text.Timebase_DownCounter_SS_Continuous_Expired_Event  timebase.o
+    0x08000d46   0x08000d46   0x00000002   PAD
+    0x08000d48   0x08000d48   0x00000022   Code   RO          239    .text.Timebase_DownCounter_SS_Get_EndValueSec  timebase.o
+    0x08000d6a   0x08000d6a   0x00000002   PAD
+    0x08000d6c   0x08000d6c   0x00000022   Code   RO          241    .text.Timebase_DownCounter_SS_Get_EndValueSubSec  timebase.o
+    0x08000d8e   0x08000d8e   0x00000002   PAD
+    0x08000d90   0x08000d90   0x00000022   Code   RO          257    .text.Timebase_DownCounter_SS_Get_ReloadValue  timebase.o
+    0x08000db2   0x08000db2   0x00000002   PAD
+    0x08000db4   0x08000db4   0x00000028   Code   RO          231    .text.Timebase_DownCounter_SS_Get_Status  timebase.o
+    0x08000ddc   0x08000ddc   0x00000022   Code   RO          235    .text.Timebase_DownCounter_SS_Get_Value  timebase.o
+    0x08000dfe   0x08000dfe   0x00000002   PAD
+    0x08000e00   0x08000e00   0x00000048   Code   RO          261    .text.Timebase_DownCounter_SS_Reset  timebase.o
+    0x08000e48   0x08000e48   0x00000030   Code   RO          293    .text.Timebase_DownCounter_SS_Reset_All  timebase.o
+    0x08000e78   0x08000e78   0x00000026   Code   RO          243    .text.Timebase_DownCounter_SS_Set_EndValueSec  timebase.o
+    0x08000e9e   0x08000e9e   0x00000002   PAD
+    0x08000ea0   0x08000ea0   0x00000026   Code   RO          245    .text.Timebase_DownCounter_SS_Set_EndValueSubSec  timebase.o
+    0x08000ec6   0x08000ec6   0x00000002   PAD
+    0x08000ec8   0x08000ec8   0x00000026   Code   RO          259    .text.Timebase_DownCounter_SS_Set_ReloadValue  timebase.o
+    0x08000eee   0x08000eee   0x00000002   PAD
+    0x08000ef0   0x08000ef0   0x000000ba   Code   RO          269    .text.Timebase_DownCounter_SS_Set_Securely  timebase.o
+    0x08000faa   0x08000faa   0x00000002   PAD
+    0x08000fac   0x08000fac   0x0000003c   Code   RO          233    .text.Timebase_DownCounter_SS_Set_Status  timebase.o
+    0x08000fe8   0x08000fe8   0x00000026   Code   RO          237    .text.Timebase_DownCounter_SS_Set_Value  timebase.o
+    0x0800100e   0x0800100e   0x00000002   PAD
+    0x08001010   0x08001010   0x00000026   Code   RO          265    .text.Timebase_DownCounter_SS_Start  timebase.o
+    0x08001036   0x08001036   0x00000002   PAD
+    0x08001038   0x08001038   0x00000106   Code   RO          273    .text.Timebase_DownCounter_SS_Update  timebase.o
+    0x0800113e   0x0800113e   0x00000002   PAD
+    0x08001140   0x08001140   0x00000030   Code   RO          291    .text.Timebase_DownCounter_SS_Update_All  timebase.o
+    0x08001170   0x08001170   0x00000028   Code   RO          305    .text.Timebase_DownCounter_Set_EndValue  timebase.o
+    0x08001198   0x08001198   0x00000028   Code   RO          319    .text.Timebase_DownCounter_Set_ReloadValue  timebase.o
+    0x080011c0   0x080011c0   0x0000003c   Code   RO          297    .text.Timebase_DownCounter_Set_Status  timebase.o
+    0x080011fc   0x080011fc   0x00000028   Code   RO          301    .text.Timebase_DownCounter_Set_Value  timebase.o
+    0x08001224   0x08001224   0x0000009c   Code   RO          333    .text.Timebase_DownCounter_Update  timebase.o
+    0x080012c0   0x080012c0   0x00000030   Code   RO          351    .text.Timebase_DownCounter_Update_All  timebase.o
+    0x080012f0   0x080012f0   0x0000005c   Code   RO          189    .text.Timebase_ISR_Executables  timebase.o
+    0x0800134c   0x0800134c   0x0000001c   Code   RO          361    .text.Timebase_Init  timebase.o
+    0x08001368   0x08001368   0x00000080   Code   RO          363    .text.Timebase_Main_Loop_Executables  timebase.o
+    0x080013e8   0x080013e8   0x0000000c   Code   RO          357    .text.Timebase_Reset  timebase.o
+    0x080013f4   0x080013f4   0x00000168   Code   RO          173    .text.Timebase_Struct_Init  timebase.o
+    0x0800155c   0x0800155c   0x000000a4   Code   RO          175    .text.Timebase_Timer_Enable  timebase.o
+    0x08001600   0x08001600   0x0000000e   Code   RO          199    .text.Timebase_Timer_Get_Seconds  timebase.o
+    0x0800160e   0x0800160e   0x00000002   PAD
+    0x08001610   0x08001610   0x0000000e   Code   RO          197    .text.Timebase_Timer_Get_SubSeconds  timebase.o
+    0x0800161e   0x0800161e   0x00000002   PAD
+    0x08001620   0x08001620   0x00000048   Code   RO          215    .text.Timebase_Timer_Sync_With_Shadow_Variables  timebase.o
+    0x08001668   0x08001668   0x00000070   Code   RO           83    .text.USART2_IRQHandler  debug.o
+    0x080016d8   0x080016d8   0x00000030   Code   RO           59    .text.__NVIC_EnableIRQ  debug.o
+    0x08001708   0x08001708   0x00000030   Code   RO          179    .text.__NVIC_EnableIRQ  timebase.o
+    0x08001738   0x08001738   0x00000042   Code   RO           61    .text.__NVIC_SetPriority  debug.o
+    0x0800177a   0x0800177a   0x00000002   PAD
+    0x0800177c   0x0800177c   0x00000042   Code   RO          177    .text.__NVIC_SetPriority  timebase.o
+    0x080017be   0x080017be   0x00000002   PAD
+    0x080017c0   0x080017c0   0x0000007a   Code   RO            2    .text.main          main.o
+    0x0800183a   0x0800183a   0x0000001a   Code   RO          491    x$fpl$fpinit        fz_wm.l(fpinit.o)
+    0x08001854   0x08001854   0x00000008   Data   RO           44    .rodata.RCC_Get_APB1_Clock.apb_presc_table  rcc.o
+    0x0800185c   0x0800185c   0x00000008   Data   RO           45    .rodata.RCC_Get_APB2_Clock.apb_presc_table  rcc.o
+    0x08001864   0x08001864   0x00000010   Data   RO           43    .rodata.RCC_Get_HCLK.ahb_presc_table  rcc.o
+    0x08001874   0x08001874   0x0000000d   Data   RO            4    .rodata.str1.1      main.o
+    0x08001881   0x08001881   0x00000003   PAD
+    0x08001884   0x08001884   0x00000010   Data   RO          566    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08000d00, Size: 0x000006f0, Max: 0x00010000, ABSOLUTE)
+    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08001894, Size: 0x00000a10, Max: 0x00010000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000        -       0x00000060   Zero   RW          228    .bss                c_w.l(libspace.o)
+    0x20000000        -       0x00000060   Zero   RW          431    .bss                c_w.l(libspace.o)
     0x20000060        -       0x0000008d   Zero   RW          165    .bss.Debug          debug.o
-    0x200000ed   0x08000d00   0x00000003   PAD
-    0x200000f0        -       0x00000200   Zero   RW          173    HEAP                startup_stm32f401xc.o
-    0x200002f0        -       0x00000400   Zero   RW          172    STACK               startup_stm32f401xc.o
+    0x200000ed   0x08001894   0x00000003   PAD
+    0x200000f0        -       0x00000004   Zero   RW          368    .bss.Timebase       timebase.o
+    0x200000f4        -       0x00000318   Zero   RW          367    .bss.Timebase_type  timebase.o
+    0x2000040c   0x08001894   0x00000004   PAD
+    0x20000410        -       0x00000200   Zero   RW          376    HEAP                startup_stm32f401xc.o
+    0x20000610        -       0x00000400   Zero   RW          375    STACK               startup_stm32f401xc.o
 
 
 ==============================================================================
@@ -944,17 +1551,18 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-      1268          0          0          0        141      13080   debug.o
-       432          0          0          0          0       3270   gpio.o
-        88          0         13          0          0       1394   main.o
-       650          0         32          0          0       3070   rcc.o
-        64         26        404          0       1536        912   startup_stm32f401xc.o
-        18          0          0          0          0       2841   system_stm32f4xx.o
+      1268          0          0          0        141      13114   debug.o
+       432          0          0          0          0       3306   gpio.o
+       122          0         13          0          0       1447   main.o
+       650          0         32          0          0       3106   rcc.o
+        64         26        404          0       1536        952   startup_stm32f401xc.o
+        18          0          0          0          0       2875   system_stm32f4xx.o
+      2896          0          0          0        796      22469   timebase.o
 
     ----------------------------------------------------------------------
-      2536         26        466          0       1680      24567   Object Totals
+      5498         26        468          0       2480      47269   Object Totals
          0          0         16          0          0          0   (incl. Generated)
-        16          0          1          0          3          0   (incl. Padding)
+        48          0          3          0          7          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -1002,15 +1610,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      2862         42        466          0       1776      25031   Grand Totals
-      2862         42        466          0       1776      25031   ELF Image Totals
-      2862         42        466          0          0          0   ROM Totals
+      5824         42        468          0       2576      47713   Grand Totals
+      5824         42        468          0       2576      47713   ELF Image Totals
+      5824         42        468          0          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 3328 (   3.25kB)
-    Total RW  Size (RW Data + ZI Data)              1776 (   1.73kB)
-    Total ROM Size (Code + RO Data + RW Data)       3328 (   3.25kB)
+    Total RO  Size (Code + RO Data)                 6292 (   6.14kB)
+    Total RW  Size (RW Data + ZI Data)              2576 (   2.52kB)
+    Total ROM Size (Code + RO Data + RW Data)       6292 (   6.14kB)
 
 ==============================================================================
 

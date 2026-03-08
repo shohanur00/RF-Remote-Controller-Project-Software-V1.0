@@ -1,5 +1,6 @@
 #include "stm32f401xc.h"
 #include "timebase.h"
+#include "rcc.h"
 
 
 
@@ -293,14 +294,14 @@ void Timebase_Struct_Init(void){
 
 
 void Timebase_Timer_Enable(uint16_t UpdateRateHz){
-  RCC->APBENR2|=RCC_APBENR2_TIM17EN;
-	TIM17->CR1|=TIM_CR1_ARPE;
-	TIM17->PSC=15;
-	TIM17->ARR=(1000000/UpdateRateHz);
-	TIM17->DIER|=TIM_DIER_UIE;
-	TIM17->CR1|=TIM_CR1_CEN;
-	NVIC_SetPriority(TIM17_IRQn, 0);
-	NVIC_EnableIRQ(TIM17_IRQn);
+	RCC->APB2ENR |= RCC_APB2ENR_TIM11EN;
+	TIM11->CR1|=TIM_CR1_ARPE;
+	TIM11->PSC= (RCC_Get_APB2_Clock()/1000000)-1;
+	TIM11->ARR=(1000000/UpdateRateHz);
+	TIM11->DIER|=TIM_DIER_UIE;
+	TIM11->CR1|=TIM_CR1_CEN;
+	NVIC_SetPriority(TIM1_TRG_COM_TIM11_IRQn, 0);
+	NVIC_EnableIRQ(TIM1_TRG_COM_TIM11_IRQn);
   Timebase->Config.UpdateRate=UpdateRateHz;
 }
 
@@ -368,9 +369,9 @@ void Timebase_Atomic_Operation_End(void){
 
 /***********************************Timer ISR Start**********************************/
 
-void TIM17_IRQHandler(void){
+void TIM1_TRG_COM_TIM11_IRQHandler(void){
   Timebase_ISR_Executables();
-	TIM17->SR&=~TIM_SR_UIF;
+	TIM11->SR&=~TIM_SR_UIF;
 }
 
 /************************************Timer ISR End***********************************/
