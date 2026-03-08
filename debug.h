@@ -7,7 +7,7 @@
 
 #define  DEBUG_TX_ENABLE
 #define  DEBUG_RX_ENABLE
-#define  DEBUG_PCKT_COMP_DELAY 20
+#define  DEBUG_PCKT_COMP_DELAY 20000			//Microsecond
 #define  DEBUG_RX_BUF_SIZE     128
 
 

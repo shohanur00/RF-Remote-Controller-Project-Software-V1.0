@@ -1,9 +1,7 @@
 
-
-
-
 #include "stm32f401xc.h"
 #include "debug.h"
+#include "rcc.h"
 
 
 /*******************Structure & Enumeration Start*****************/
@@ -48,9 +46,7 @@ void Debug_Struct_Init(void){
 
 void Debug_GPIO_Init(void){
 	//PA2->TX, PA3->RX
-	if( (RCC->IOPENR & RCC_IOPENR_GPIOAEN)!= RCC_IOPENR_GPIOAEN ){
-		RCC->IOPENR |= RCC_IOPENR_GPIOAEN;
-	}
+	RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
 	
 	#ifdef DEBUG_TX_ENABLE
 	//Config PA2 as alternate Func
@@ -61,9 +57,11 @@ void Debug_GPIO_Init(void){
 	GPIOA->PUPDR &=~ GPIO_PUPDR_PUPD2_Msk;
 	GPIOA->PUPDR |=  GPIO_PUPDR_PUPD2_0;
 	
+	GPIOA->OSPEEDR |= GPIO_OSPEEDER_OSPEEDR2;
+	
 	//Select TX in AFR
 	GPIOA->AFR[0]&=~ GPIO_AFRL_AFSEL2_Msk;
-	GPIOA->AFR[0]|=  (1<<GPIO_AFRL_AFSEL2_Pos);
+	GPIOA->AFR[0]|=  (7U<<GPIO_AFRL_AFSEL2_Pos);
 	#endif
 	
 	#ifdef DEBUG_RX_ENABLE
@@ -75,16 +73,26 @@ void Debug_GPIO_Init(void){
 	GPIOA->PUPDR &=~ GPIO_PUPDR_PUPD3_Msk;
 	GPIOA->PUPDR |=  GPIO_PUPDR_PUPD3_0;
 	
+	GPIOA->OSPEEDR |= GPIO_OSPEEDER_OSPEEDR3;
 	//Select RX in AFR
 	GPIOA->AFR[0]&=~ GPIO_AFRL_AFSEL3_Msk;
-	GPIOA->AFR[0]|=  (1<<GPIO_AFRL_AFSEL3_Pos);
+	GPIOA->AFR[0]|=  (7U<<GPIO_AFRL_AFSEL3_Pos);
 	#endif
 }
 
 void Debug_Reg_Init(uint32_t baud_rate){
 	//Debug -> UART2
-	RCC->APBENR1 |= RCC_APBENR1_USART2EN;
-	USART2->BRR   = (uint16_t)(16000000/baud_rate);
+	RCC->APB1ENR |= RCC_APB1ENR_USART2EN;
+	float usartdiv = (float)(RCC_Get_APB1_Clock()/(16.0f*baud_rate));
+	uint32_t mantissa = (uint32_t)usartdiv;          																			// integer part
+	uint32_t fraction = (uint32_t)((usartdiv - mantissa) * 16.0f + 0.5f); // rounding
+
+	if (fraction >= 16) {
+			mantissa += 1;
+			fraction = 0;
+	} 												// fractional part (4-bit)
+	
+	USART2->BRR = (uint16_t)((mantissa << 4) | (fraction & 0x0F));
 	
 	#ifdef DEBUG_TX_ENABLE
 	USART2->CR1  |= USART_CR1_TE;
@@ -92,9 +100,7 @@ void Debug_Reg_Init(uint32_t baud_rate){
 	
 	#ifdef DEBUG_RX_ENABLE
 	USART2->CR1  |= USART_CR1_RE;
-	//FIFO disable
-	USART2->CR1 &=~USART_CR1_FIFOEN;
-	USART2->CR1 |= USART_CR1_RXNEIE_RXFNEIE;
+	USART2->CR1 |= USART_CR1_RXNEIE;
 	//add interrupt
 	NVIC_EnableIRQ(USART2_IRQn);
 	NVIC_SetPriority(USART2_IRQn, 2);
@@ -106,27 +112,25 @@ void Debug_Reg_Init(uint32_t baud_rate){
 
 //Dedicated Timer for Data Packet End Detection
 void Debug_Timer_Init(void){
-	if( (RCC->APBENR2 & RCC_APBENR2_TIM16EN) != RCC_APBENR2_TIM16EN){
-		RCC->APBENR2 |= RCC_APBENR2_TIM16EN;
-	}
-	TIM16->CR1 |= TIM_CR1_ARPE;
-	//Prescaler 16000, to get 1ms
-	TIM16->PSC  = 15999;
+	RCC->APB2ENR |= RCC_APB2ENR_TIM10EN;
+	TIM10->CR1 |= TIM_CR1_ARPE;
+	//to get 1us
+	TIM10->PSC  = (RCC_Get_APB2_Clock()/1000000U)-1;
 	//TIM16->ARR  = 0xFFFF;
-	TIM16->ARR  = DEBUG_PCKT_COMP_DELAY;
-	TIM16->EGR |= TIM_EGR_UG;
-	TIM16->DIER|= TIM_DIER_UIE;
-	NVIC_EnableIRQ(TIM16_IRQn);
-	NVIC_SetPriority(TIM16_IRQn, 2);
+	TIM10->ARR  = DEBUG_PCKT_COMP_DELAY;
+	TIM10->EGR |= TIM_EGR_UG;
+	TIM10->DIER|= TIM_DIER_UIE;
+	NVIC_EnableIRQ(TIM1_UP_TIM10_IRQn);
+	NVIC_SetPriority(TIM1_UP_TIM10_IRQn, 2);
 }
 
 void Debug_Timer_Enable(void){
-	TIM16->CR1 |= TIM_CR1_CEN;
+	TIM10->CR1 |= TIM_CR1_CEN;
 	Debug.TimerEnabled = 1;
 }
 
 void Debug_Timer_Disable(void){
-	TIM16->CR1 &=~ TIM_CR1_CEN;
+	TIM10->CR1 &=~ TIM_CR1_CEN;
 	Debug.TimerEnabled = 0;
 }
 
@@ -135,16 +139,16 @@ uint8_t Debug_Get_Timer_Status(void){
 }
 
 uint16_t Debug_Get_Counter_Val(void){
-	return TIM16->CNT;
+	return TIM10->CNT;
 }
 
 
 void Debug_Counter_Reset(void){
-	TIM16->CNT = 0;
+	TIM10->CNT = 0;
 }
 
 
-void TIM16_IRQHandler(void){
+void TIM1_UP_TIM10_IRQHandler(void){
 	if(Debug.TimerEnabled == 1){
 	  Debug_Timer_Disable();
 	}
@@ -154,7 +158,7 @@ void TIM16_IRQHandler(void){
 	else{
 		Debug.DataAvailable = 0;
 	}
-	TIM16->SR &=~ TIM_SR_UIF;
+	TIM10->SR &=~ TIM_SR_UIF;
 }
 
 /***********************Init Functions Start*********************/
@@ -170,22 +174,21 @@ void TIM16_IRQHandler(void){
 /**********************Basic Functions Start*********************/
 
 void Debug_Tx_Byte(uint8_t val){
-	USART2->TDR = val;
-	while((USART2->ISR & USART_ISR_TC) != USART_ISR_TC){
+	USART2->DR = val;
+	while((USART2->SR & USART_SR_TC) != USART_SR_TC){
 		//Add Timeout functions
 	}
-	USART2->ICR |= USART_ICR_TCCF;
 }
 
 
 
 uint8_t Debug_Rx_Byte(void){
-  volatile uint32_t temp = USART2->RDR;
+  volatile uint32_t temp = USART2->DR;
 	return (uint8_t)temp;
 }
 
 void USART2_IRQHandler(void){
-	if(USART2->ISR & USART_ISR_RXNE_RXFNE){
+	if(USART2->SR & USART_SR_RXNE){
 	  Debug.Buf[Debug.BufIndex] = Debug_Rx_Byte();
 		Debug.BufIndex++;
 		if(Debug.BufIndex >= DEBUG_RX_BUF_SIZE){

@@ -2,6 +2,7 @@
 ".\objects\main.o"
 ".\objects\gpio.o"
 ".\objects\rcc.o"
+".\objects\debug.o"
 ".\objects\startup_stm32f401xc.o"
 ".\objects\system_stm32f4xx.o"
 --strict --scatter ".\Objects\rf_remote_controller_project.sct"
