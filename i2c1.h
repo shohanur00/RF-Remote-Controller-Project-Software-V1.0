@@ -15,6 +15,8 @@
 #define I2C_TIMEOUT       100000
 
 #define DEBUG_ENABLE
+#define I2C_SPEED_100K 		100000	
+//#define I2C_SPEED_400K 			400000	
 
 // -------------------------
 // Initialization

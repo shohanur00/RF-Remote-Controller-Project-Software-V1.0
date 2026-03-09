@@ -6,6 +6,8 @@
 ".\objects\timebase.o"
 ".\objects\app.o"
 ".\objects\i2c1.o"
+".\objects\oled.o"
+".\objects\font5x7_data.o"
 ".\objects\startup_stm32f401xc.o"
 ".\objects\system_stm32f4xx.o"
 --strict --scatter ".\Objects\rf_remote_controller_project.sct"
