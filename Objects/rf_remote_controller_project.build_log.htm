@@ -3,85 +3,37 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Tool Versions:</h2>
-IDE-Version: µVision V5.42.0.0
+IDE-Version: µVision V5.43.1.0
 Copyright (C) 2025 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: gff gfd, df, LIC=----
+License Information: e ee
+ee
+User-based license: Keil MDK Community (non-commercial free of charge)
+Valid until: Jun 1 2033. Cached until: Mar 15 2026
  
 Tool Versions:
-Toolchain:       MDK-Lite  Version: 5.42.0.0
-Toolchain Path:  C:\Users\user\AppData\Local\Keil_v5\ARM\ARMCLANG\Bin
-C Compiler:      ArmClang.exe V6.23
-Assembler:       Armasm.exe V6.23
-Linker/Locator:  ArmLink.exe V6.23
-Library Manager: ArmAr.exe V6.23
-Hex Converter:   FromElf.exe V6.23
-CPU DLL:         SARMCM3.DLL V5.42.0.0
+Toolchain:       Keil MDK Community (non-commercial free of charge  Version: 5.43.0.0
+Toolchain Path:  C:\Users\WALTON\AppData\Local\Keil_v5\ARM\ARMCLANG\Bin
+C Compiler:      ArmClang.exe V6.24
+Assembler:       Armasm.exe V6.24
+Linker/Locator:  ArmLink.exe V6.24
+Library Manager: ArmAr.exe V6.24
+Hex Converter:   FromElf.exe V6.24
+CPU DLL:         SARMCM3.DLL V5.43.0.0
 Dialog DLL:      DCM.DLL V1.17.5.0
-Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.3.0.0
+Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.3.1.0
 Dialog DLL:      TCM.DLL V1.56.6.0
  
 <h2>Project:</h2>
-E:\Software Project\RF-Remote-Controller-Project-Software-V1.0\RF-Remote-Controller-Project-Software-V1.0\rf_remote_controller_project.uvprojx
-Project File Date:  03/09/2026
+E:\Personal Projects\RF Remote Controller Project (Software) V1.0\rf_remote_controller_project.uvprojx
+Project File Date:  03/10/2026
 
 <h2>Output:</h2>
-*** Using Compiler 'V6.23', folder: 'C:\Users\user\AppData\Local\Keil_v5\ARM\ARMCLANG\Bin'
+*** Using Compiler 'V6.24', folder: 'C:\Users\WALTON\AppData\Local\Keil_v5\ARM\ARMCLANG\Bin'
 Rebuild target 'stm32f401rct6'
-oled.c(220): warning: format specifies type 'long' but the argument has type 'int32_t' (aka 'int') [-Wformat]
-  220 |     sprintf(buf,"%ld",num);
-      |                  ~~~  ^~~
-      |                  %d
-oled.c(230): warning: format specifies type 'long' but the argument has type 'int32_t' (aka 'int') [-Wformat]
-  230 |         case 1:  sprintf(buf,"%1ld",value); break;
-      |                               ~~~~  ^~~~~
-      |                               %1d
-oled.c(231): warning: format specifies type 'long' but the argument has type 'int32_t' (aka 'int') [-Wformat]
-  231 |         case 2:  sprintf(buf,"%02ld",value); break;
-      |                               ~~~~~  ^~~~~
-      |                               %02d
-oled.c(232): warning: format specifies type 'long' but the argument has type 'int32_t' (aka 'int') [-Wformat]
-  232 |         case 3:  sprintf(buf,"%03ld",value); break;
-      |                               ~~~~~  ^~~~~
-      |                               %03d
-oled.c(233): warning: format specifies type 'long' but the argument has type 'int32_t' (aka 'int') [-Wformat]
-  233 |         case 4:  sprintf(buf,"%04ld",value); break;
-      |                               ~~~~~  ^~~~~
-      |                               %04d
-oled.c(234): warning: format specifies type 'long' but the argument has type 'int32_t' (aka 'int') [-Wformat]
-  234 |         case 5:  sprintf(buf,"%05ld",value); break;
-      |                               ~~~~~  ^~~~~
-      |                               %05d
-oled.c(235): warning: format specifies type 'long' but the argument has type 'int32_t' (aka 'int') [-Wformat]
-  235 |         case 6:  sprintf(buf,"%06ld",value); break;
-      |                               ~~~~~  ^~~~~
-      |                               %06d
-oled.c(236): warning: format specifies type 'long' but the argument has type 'int32_t' (aka 'int') [-Wformat]
-  236 |         case 7:  sprintf(buf,"%07ld",value); break;
-      |                               ~~~~~  ^~~~~
-      |                               %07d
-oled.c(237): warning: format specifies type 'long' but the argument has type 'int32_t' (aka 'int') [-Wformat]
-  237 |         case 8:  sprintf(buf,"%08ld",value); break;
-      |                               ~~~~~  ^~~~~
-      |                               %08d
-oled.c(238): warning: format specifies type 'long' but the argument has type 'int32_t' (aka 'int') [-Wformat]
-  238 |         case 9:  sprintf(buf,"%09ld",value); break;
-      |                               ~~~~~  ^~~~~
-      |                               %09d
-oled.c(239): warning: format specifies type 'long' but the argument has type 'int32_t' (aka 'int') [-Wformat]
-  239 |         case 10: sprintf(buf,"%010ld",value); break;
-      |                               ~~~~~~  ^~~~~
-      |                               %010d
-oled.c(241): warning: format specifies type 'long' but the argument has type 'int32_t' (aka 'int') [-Wformat]
-  241 |         default: sprintf(buf,"%ld",value); break;
-      |                               ~~~  ^~~~~
-      |                               %d
-12 warnings generated.
-compiling oled.c...
-assembling startup_stm32f401xc.s...
-compiling gpio.c...
-compiling font5x7_data.c...
-compiling main.c...
 compiling app.c...
+compiling main.c...
+compiling font5x7_data.c...
+compiling gpio.c...
 compiling system_stm32f4xx.c...
 rcc.c(94): warning: implicit conversion from 'int' to 'uint8_t' (aka 'unsigned char') changes value from 1024 to 0 [-Wconstant-conversion]
    94 |         {1,1,1,1,2,4,8,16,64,128,256,512,1024,1024,1024,1024};
@@ -103,12 +55,28 @@ rcc.c(94): warning: implicit conversion from 'int' to 'uint8_t' (aka 'unsigned c
       |         ~                        ^~~
 6 warnings generated.
 compiling rcc.c...
-compiling timebase.c...
-compiling i2c1.c...
 compiling debug.c...
+oled.c(236): warning: format specifies type 'long' but the argument has type 'int32_t' (aka 'int') [-Wformat]
+  236 |     sprintf(buf,"%ld",num);
+      |                  ~~~  ^~~
+      |                  %d
+oled.c(243): warning: format specifies type 'long' but the argument has type 'int32_t' (aka 'int') [-Wformat]
+  243 |     sprintf(buf,"%ld",value);
+      |                  ~~~  ^~~~~
+      |                  %d
+2 warnings generated.
+compiling oled.c...
+compiling i2c1.c...
+animation.c(224): warning: result of comparison of constant 360 with expression of type 'uint8_t' (aka 'unsigned char') is always false [-Wtautological-constant-out-of-range-compare]
+  224 |     if(angle >= 360) angle = 0;
+      |        ~~~~~ ^  ~~~
+1 warning generated.
+compiling animation.c...
+compiling timebase.c...
+assembling startup_stm32f401xc.s...
 linking...
-Program Size: Code=14864 RO-data=1564 RW-data=4 ZI-data=3604  
-".\Objects\rf_remote_controller_project.axf" - 0 Error(s), 18 Warning(s).
+Program Size: Code=13764 RO-data=1228 RW-data=0 ZI-data=3600  
+".\Objects\rf_remote_controller_project.axf" - 0 Error(s), 9 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -126,20 +94,20 @@ Package Vendor: Keil
 
 <h2>Collection of Component include folders:</h2>
   ./RTE/_stm32f401rct6
-  C:/Users/user/AppData/Local/Arm/Packs/ARM/CMSIS/6.2.0/CMSIS/Core/Include
-  C:/Users/user/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include
+  C:/Users/WALTON/AppData/Local/Arm/Packs/ARM/CMSIS/6.2.0/CMSIS/Core/Include
+  C:/Users/WALTON/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include
 
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE@6.1.1
 
    * Component: Keil::Device:Startup@2.6.3
+      Source file:   MDK/Device/Source/ARM/STM32F4xx_OTP.s
       Source file:   MDK/Device/Source/ARM/STM32F401xx_OPT.s
       Include file:  Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
       Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/arm/startup_stm32f401xc.s
-      Source file:   MDK/Device/Source/ARM/STM32F4xx_OTP.s
       Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/system_stm32f4xx.c
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>

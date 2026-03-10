@@ -88,68 +88,102 @@ void OLED_Update_Partial(uint8_t x0,uint8_t y0,uint8_t x1,uint8_t y1)
 //------------------ pixel ------------------
 void OLED_Draw_Pixel(uint8_t x, uint8_t y, uint8_t color)
 {
-    if(x>=OLED_WIDTH || y>=OLED_HEIGHT) return;
+    if(x >= OLED_WIDTH || y >= OLED_HEIGHT) return;
 
     if(color)
-        OLED_Buffer[x + (y/8)*OLED_WIDTH] |=  (1<<(y%8));
+        OLED_Buffer[x + (y/8)*OLED_WIDTH] |= (1 << (y%8));
     else
-        OLED_Buffer[x + (y/8)*OLED_WIDTH] &= ~(1<<(y%8));
+        OLED_Buffer[x + (y/8)*OLED_WIDTH] &= ~(1 << (y%8));
 }
 
 //------------------ text ------------------
-void OLED_Draw_Char(uint8_t x, uint8_t y, char c)
+void OLED_Draw_Char(uint8_t x, uint8_t y, char c, uint8_t color)
 {
-    if(c < 32 || c > 127) c = '?';
+    if(c < 32 || c > 127) c='?';
 
-    OLED_Send_Command(0xB0 + y);            // page
-    OLED_Send_Command(0x00 + (x & 0x0F));   // low nibble
-    OLED_Send_Command(0x10 + (x >> 4));     // high nibble
+    for(uint8_t i=0;i<5;i++)
+    {
+        uint8_t line = Font5x7_data[c-32][i];
 
-    OLED_Send_Data((uint8_t*)Font5x7_data[c-32], 5);
+        for(uint8_t j=0;j<7;j++)
+        {
+            OLED_Draw_Pixel(x+i, y+j, (line & (1<<j)) ? color : 0);
+        }
+    }
 
-    uint8_t space = 0;
-    OLED_Send_Data(&space, 1);
+    // space column
+    for(uint8_t j=0;j<7;j++)
+        OLED_Draw_Pixel(x+5, y+j, 0);
 }
 
-void OLED_Draw_String(uint8_t x, uint8_t y, const char* str)
+
+void OLED_Draw_String(uint8_t x, uint8_t y, const char* str, uint8_t color)
 {
     while(*str)
     {
-        OLED_Draw_Char(x, y, *str++);
-        x+=6;
-        if(x+5>=OLED_WIDTH) { x=0; y+=8; }
+        OLED_Draw_Char(x, y, *str++, color);
+        x += 6;
+        if(x + 5 >= OLED_WIDTH) { x=0; y+=8; if(y>=OLED_HEIGHT) return; }
+    }
+}
+
+
+void OLED_Draw_Char_Big(uint8_t x, uint8_t y, char c, uint8_t size, uint8_t color)
+{
+    if(c < 32 || c > 127) c='?';
+
+    for(uint8_t i=0;i<5;i++)
+    {
+        uint8_t line = Font5x7_data[c-32][i];
+        for(uint8_t j=0;j<7;j++)
+        {
+            if(line & (1<<j))
+            {
+                for(uint8_t xs=0; xs<size; xs++)
+                    for(uint8_t ys=0; ys<size; ys++)
+                        OLED_Draw_Pixel(x + i*size + xs, y + j*size + ys, color);
+            }
+        }
+    }
+}
+
+void OLED_Draw_String_Big(uint8_t x, uint8_t y, const char *str, uint8_t size,uint8_t color)
+{
+    while(*str)
+    {
+        OLED_Draw_Char_Big(x, y, *str++, size,color);
+        x += (6 * size);
     }
 }
 
 //------------------ lines ------------------
-void OLED_Draw_HLine(uint8_t x, uint8_t y, uint8_t w)
+void OLED_Draw_HLine(uint8_t x, uint8_t y, uint8_t w, uint8_t color)
 {
-    for(uint8_t i=0;i<w;i++) OLED_Draw_Pixel(x+i,y,1);
+    for(uint8_t i=0;i<w;i++) OLED_Draw_Pixel(x+i,y,color);
 }
 
-void OLED_Draw_VLine(uint8_t x, uint8_t y, uint8_t h)
+void OLED_Draw_VLine(uint8_t x, uint8_t y, uint8_t h, uint8_t color)
 {
-    for(uint8_t i=0;i<h;i++) OLED_Draw_Pixel(x,y+i,1);
+    for(uint8_t i=0;i<h;i++) OLED_Draw_Pixel(x,y+i,color);
 }
 
-//------------------ rectangles ------------------
-void OLED_Draw_Rect(uint8_t x, uint8_t y, uint8_t w, uint8_t h)
+void OLED_Draw_Rect(uint8_t x, uint8_t y, uint8_t w, uint8_t h, uint8_t color)
 {
-    OLED_Draw_HLine(x,y,w);
-    OLED_Draw_HLine(x,y+h-1,w);
-    OLED_Draw_VLine(x,y,h);
-    OLED_Draw_VLine(x+w-1,y,h);
+    OLED_Draw_HLine(x,y,w,color);
+    OLED_Draw_HLine(x,y+h-1,w,color);
+    OLED_Draw_VLine(x,y,h,color);
+    OLED_Draw_VLine(x+w-1,y,h,color);
 }
 
-void OLED_Fill_Rect(uint8_t x, uint8_t y, uint8_t w, uint8_t h)
+void OLED_Fill_Rect(uint8_t x, uint8_t y, uint8_t w, uint8_t h, uint8_t color)
 {
     for(uint8_t i=0;i<w;i++)
         for(uint8_t j=0;j<h;j++)
-            OLED_Draw_Pixel(x+i,y+j,1);
+            OLED_Draw_Pixel(x+i,y+j,color);
 }
 
 //------------------ circles ------------------
-void OLED_Draw_Circle(uint8_t x0, uint8_t y0, uint8_t r)
+void OLED_Draw_Circle(uint8_t x0, uint8_t y0, uint8_t r, uint8_t color)
 {
     int16_t f = 1 - r;
     int16_t ddF_x = 1;
@@ -157,92 +191,60 @@ void OLED_Draw_Circle(uint8_t x0, uint8_t y0, uint8_t r)
     int16_t x = 0;
     int16_t y = r;
 
-    OLED_Draw_Pixel(x0, y0+r, 1);
-    OLED_Draw_Pixel(x0, y0-r, 1);
-    OLED_Draw_Pixel(x0+r, y0, 1);
-    OLED_Draw_Pixel(x0-r, y0, 1);
+    OLED_Draw_Pixel(x0, y0+r,color);
+    OLED_Draw_Pixel(x0, y0-r,color);
+    OLED_Draw_Pixel(x0+r, y0,color);
+    OLED_Draw_Pixel(x0-r, y0,color);
 
     while(x<y)
     {
-        if(f>=0)
-        {
-            y--;
-            ddF_y += 2;
-            f += ddF_y;
-        }
-        x++;
-        ddF_x += 2;
-        f += ddF_x;
+        if(f>=0) { y--; ddF_y+=2; f+=ddF_y; }
+        x++; ddF_x+=2; f+=ddF_x;
 
-        OLED_Draw_Pixel(x0+x, y0+y,1);
-        OLED_Draw_Pixel(x0-x, y0+y,1);
-        OLED_Draw_Pixel(x0+x, y0-y,1);
-        OLED_Draw_Pixel(x0-x, y0-y,1);
-        OLED_Draw_Pixel(x0+y, y0+x,1);
-        OLED_Draw_Pixel(x0-y, y0+x,1);
-        OLED_Draw_Pixel(x0+y, y0-x,1);
-        OLED_Draw_Pixel(x0-y, y0-x,1);
+        OLED_Draw_Pixel(x0+x, y0+y,color);
+        OLED_Draw_Pixel(x0-x, y0+y,color);
+        OLED_Draw_Pixel(x0+x, y0-y,color);
+        OLED_Draw_Pixel(x0-x, y0-y,color);
+        OLED_Draw_Pixel(x0+y, y0+x,color);
+        OLED_Draw_Pixel(x0-y, y0+x,color);
+        OLED_Draw_Pixel(x0+y, y0-x,color);
+        OLED_Draw_Pixel(x0-y, y0-x,color);
     }
 }
 
-// Filled circle using Midpoint circle algorithm
-void OLED_Fill_Circle(uint8_t x0, uint8_t y0, uint8_t r)
+void OLED_Fill_Circle(uint8_t x0, uint8_t y0, uint8_t r, uint8_t color)
 {
-    int16_t x = 0;
-    int16_t y = r;
-    int16_t d = 1 - r;
+    int16_t x=0,y=r;
+    int16_t d=1-r;
 
-    while (y >= x)
+    while(y>=x)
     {
-        // Draw horizontal lines between symmetric points
-        OLED_Draw_HLine(x0 - x, y0 - y, 2*x + 1);
-        OLED_Draw_HLine(x0 - x, y0 + y, 2*x + 1);
-        OLED_Draw_HLine(x0 - y, y0 - x, 2*y + 1);
-        OLED_Draw_HLine(x0 - y, y0 + x, 2*y + 1);
+        OLED_Draw_HLine(x0-x, y0-y, 2*x+1, color);
+        OLED_Draw_HLine(x0-x, y0+y, 2*x+1, color);
+        OLED_Draw_HLine(x0-y, y0-x, 2*y+1, color);
+        OLED_Draw_HLine(x0-y, y0+x, 2*y+1, color);
 
         x++;
-        if (d < 0)
-        {
-            d += 2*x + 1;
-        }
-        else
-        {
-            y--;
-            d += 2*(x - y) + 1;
-        }
+        if(d<0) d+=2*x+1;
+        else { y--; d+=2*(x-y)+1; }
     }
 }
-
 //------------------ numbers ------------------
-void OLED_Draw_Number(uint8_t x, uint8_t y, int32_t num)
+void OLED_Draw_Number(uint8_t x, uint8_t y, int32_t num,uint8_t color)
 {
     char buf[12];
     sprintf(buf,"%ld",num);
-    OLED_Draw_String(x,y,buf);
+    OLED_Draw_String(x,y,buf,color);
 }
 
-void OLED_Draw_Int(uint8_t x, uint8_t y, int32_t value, uint8_t digits)
+void OLED_Number_Big(uint8_t x, uint8_t y, int32_t value, uint8_t size,uint8_t color)
 {
     char buf[12];
-
-    switch(digits)
-    {
-        case 1:  sprintf(buf,"%1ld",value); break;
-        case 2:  sprintf(buf,"%02ld",value); break;
-        case 3:  sprintf(buf,"%03ld",value); break;
-        case 4:  sprintf(buf,"%04ld",value); break;
-        case 5:  sprintf(buf,"%05ld",value); break;
-        case 6:  sprintf(buf,"%06ld",value); break;
-        case 7:  sprintf(buf,"%07ld",value); break;
-        case 8:  sprintf(buf,"%08ld",value); break;
-        case 9:  sprintf(buf,"%09ld",value); break;
-        case 10: sprintf(buf,"%010ld",value); break;
-
-        default: sprintf(buf,"%ld",value); break;
-    }
-
-    OLED_Draw_String(x,y,buf);
+    sprintf(buf,"%ld",value);
+    OLED_Draw_String_Big(x, y, buf, size,color);
 }
+
+
 
 //------------------ simple delay (no HAL) ------------------
 void delay_ms(uint32_t ms)
