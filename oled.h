@@ -4,6 +4,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include "i2c1.h"
+#include "rcc.h"
 
 //------------------ color ------------------
 #define OLED_BLACK 0
@@ -15,11 +16,14 @@
 #define OLED_HEIGHT       64
 #define OLED_BUFFER_SIZE  (OLED_WIDTH * OLED_HEIGHT / 8)
 
+
 // I2C OLED address
 #define OLED_I2C_ADDR     0x3C
 
 // Font declaration (extern, define in oled.c)
 extern const uint8_t Font5x7_data[96][5];
+extern volatile uint8_t oled_update_flag;
+
 
 // OLED buffer
 extern uint8_t OLED_Buffer[OLED_BUFFER_SIZE];
@@ -29,7 +33,7 @@ void OLED_Send_Command(uint8_t cmd);
 void OLED_Send_Data(uint8_t* data, uint16_t len);
 
 //------------------ basic ------------------
-void OLED_Init(void);
+void OLED_Init(uint16_t rf_rate);
 void OLED_Clear(void);
 void OLED_Update(void);
 void OLED_Update_Partial(uint8_t x0,uint8_t y0,uint8_t x1,uint8_t y1);
@@ -65,5 +69,12 @@ void OLED_Draw_Int_Big(uint8_t x, uint8_t y, int32_t value, uint8_t digits, uint
 
 //------------------ simple delay ------------------
 void delay_ms(uint32_t ms);
+
+//-------------------Timer For Refressing-----------
+void Oled_Timer_Init(uint16_t rf_rate);
+uint8_t Oled_Update_Flag_Read(void);
+void Oled_Update_Flag_Set(void);
+void Oled_Update_Flag_Clear(void);
+
 
 #endif // OLED_H

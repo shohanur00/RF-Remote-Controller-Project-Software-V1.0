@@ -2,6 +2,8 @@
 
 // OLED buffer
 uint8_t OLED_Buffer[OLED_BUFFER_SIZE];
+volatile uint8_t oled_update_flag = 0;
+
 
 //------------------ low-level ------------------
 void OLED_Send_Command(uint8_t cmd)
@@ -27,9 +29,10 @@ void OLED_Send_Data(uint8_t* data, uint16_t len)
 }
 
 //------------------ basic ------------------
-void OLED_Init(void)
+void OLED_Init(uint16_t rf_rate)
 {
     I2C1_Init();
+		Oled_Timer_Init(rf_rate);
     OLED_Clear();
 
     OLED_Send_Command(0xAE); // display off
@@ -251,4 +254,65 @@ void delay_ms(uint32_t ms)
 {
     for(uint32_t i=0;i<ms;i++)
         for(uint32_t j=0;j<5000;j++); // approximate, tune for MCU speed
+}
+
+
+//--------------------Oled Refress ----------------------------
+
+void Oled_Timer_Init(uint16_t rf_rate)
+{
+    uint32_t tim_clk = RCC_Get_APB2_Clock(); 
+    uint32_t ppre2 = (RCC->CFGR & RCC_CFGR_PPRE2) >> 13; 
+    if(ppre2 >= 4) tim_clk *= 2;
+
+    // Timer tick frequency ~10kHz
+    uint32_t tick_freq = 10000; 
+    uint32_t prescaler = tim_clk / tick_freq - 1;
+    if(prescaler > 0xFFFF) prescaler = 0xFFFF;
+
+    uint32_t arr = tick_freq / rf_rate - 1;
+    if(arr > 0xFFFF) arr = 0xFFFF;
+
+    // Enable Timer9 clock
+    RCC->APB2ENR |= RCC_APB2ENR_TIM9EN;
+
+    // Disable timer before config
+    TIM9->CR1 &= ~TIM_CR1_CEN;
+
+    TIM9->PSC = prescaler;
+    TIM9->ARR = arr;
+    TIM9->EGR = TIM_EGR_UG;     // update registers
+    TIM9->DIER |= TIM_DIER_UIE; // enable update interrupt
+
+    NVIC_EnableIRQ(TIM1_BRK_TIM9_IRQn); // enable Timer9 IRQ
+
+    TIM9->CR1 |= TIM_CR1_CEN;   // start timer
+}
+
+void TIM1_BRK_TIM9_IRQHandler(void)
+{
+    if(TIM9->SR & TIM_SR_UIF)
+    {
+        TIM9->SR &= ~TIM_SR_UIF; // clear update flag
+        Oled_Update_Flag_Set();
+    }
+}
+
+
+// Read flag
+uint8_t Oled_Update_Flag_Read(void)
+{
+    return oled_update_flag;
+}
+
+// Set flag
+void Oled_Update_Flag_Set(void)
+{
+    oled_update_flag = 1;
+}
+
+// Clear flag
+void Oled_Update_Flag_Clear(void)
+{
+    oled_update_flag = 0;
 }
