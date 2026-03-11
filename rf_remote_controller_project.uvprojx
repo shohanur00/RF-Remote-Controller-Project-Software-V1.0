@@ -434,6 +434,11 @@
               <FileType>1</FileType>
               <FilePath>.\animation.c</FilePath>
             </File>
+            <File>
+              <FileName>microtimer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\microtimer.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -483,6 +488,11 @@
               <FileName>animation.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\animation.h</FilePath>
+            </File>
+            <File>
+              <FileName>microtimer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\microtimer.h</FilePath>
             </File>
           </Files>
         </Group>

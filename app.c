@@ -6,8 +6,29 @@
 #include "i2c1.h"
 #include "oled.h"
 #include "animation.h"
+#include "microtimer.h"
+
 
 int number=0,counter = 660;
+
+
+void my_function(void){
+		if(Oled_Update_Flag_Read()){
+			
+			number++;
+			
+			Oled_Update_Flag_Clear();
+			OLED_Clear();
+			
+			OLED_Draw_Number(40,0,number,1);
+			OLED_Draw_String(0,0,"Hello!",1);
+			
+			OLED_Update();
+			
+		}
+	
+}
+
 
 void App_Setup(void){
 	
@@ -21,7 +42,7 @@ void App_Setup(void){
 	ANIM_Booting(1000);
 	OLED_Clear();
   //OLED_Draw_String(0,0,"Hello STM32!");
-  
+  MicroTimer_Init();
 	
 	//OLED_Update();
 	GPIO_EnableClock(GPIOC);
@@ -40,21 +61,9 @@ void App_Main_Loop(void){
 			
 		}
 		
+		uint32_t execution_time = MicroTimer_Measure(Timebase_Main_Loop_Executables);
+		Debug_Tx_Parameter_NL("Exc Time:",execution_time);
 		
-		
-		if(Oled_Update_Flag_Read()){
-			
-			number++;
-			
-			Oled_Update_Flag_Clear();
-			OLED_Clear();
-			
-			OLED_Draw_Number(40,0,number,1);
-			OLED_Draw_String(0,0,"Hello!",1);
-			
-			OLED_Update();
-			
-		}
-		//Timebase_Main_Loop_Executables();
+		Timebase_Main_Loop_Executables();
 	
 }

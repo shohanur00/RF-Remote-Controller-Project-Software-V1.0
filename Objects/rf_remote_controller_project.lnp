@@ -9,6 +9,7 @@
 ".\objects\oled.o"
 ".\objects\font5x7_data.o"
 ".\objects\animation.o"
+".\objects\microtimer.o"
 ".\objects\startup_stm32f401xc.o"
 ".\objects\system_stm32f4xx.o"
 --strict --scatter ".\Objects\rf_remote_controller_project.sct"
