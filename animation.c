@@ -6,45 +6,34 @@
 
 void ANIM_Booting(uint32_t duration_ms)
 {
-    uint8_t cx = OLED_WIDTH / 2;   // center x
-    uint8_t cy = OLED_HEIGHT / 2;  // center y
-    uint8_t r = 10;                // smaller radius for circle
-    uint8_t steps = 12;            // number of dots
-    char boot_text[] = "Booting...";
-    
-    uint32_t frame_delay = 30; // approx 30ms per frame
+    uint8_t bar_width  = 100;
+    uint8_t bar_height = 10;
+
+    // Position: center of OLED
+    uint8_t bar_x = (OLED_WIDTH - bar_width) / 2;
+    uint8_t bar_y = (OLED_HEIGHT - bar_height) / 2;
+
+    uint32_t frame_delay = 20; // 20ms per frame for smoothness
     uint32_t total_frames = duration_ms / frame_delay;
 
-    for(uint32_t frame = 0; frame < total_frames; frame++)
+    for(uint32_t frame = 0; frame <= total_frames; frame++)
     {
         OLED_Clear();
 
-        // Draw circular dots with rotating animation
-        for(uint8_t i = 0; i < steps; i++)
-        {
-            float angle = 2 * 3.14159f * i / steps + frame * 0.15f;
-            int x = cx + (int)(r * cos(angle));
-            int y = cy + (int)(r * sin(angle));
+        // calculate current progress
+        uint8_t progress = (frame * 100) / total_frames;
 
-            // pulsing effect
-            uint8_t color = 0;
-            int diff = (i + frame) % steps;
-            if(diff < steps/3) color = 1;
-            else color = 0;
-
-            OLED_Draw_Pixel(x, y, color);
-        }
-
-        // Draw Booting text below
-        uint8_t text_x = cx - (6 * strlen(boot_text)) / 2; // center align
-        uint8_t text_y = cy + r + 4;
-        OLED_Draw_String(text_x, text_y, boot_text,OLED_WHITE);
+        // draw progress bar using professional function
+        ANIM_ProgressBar_Pro(bar_x, bar_y, bar_width, bar_height, progress, 100, OLED_WHITE);
 
         OLED_Update();
 
-        // delay ~ frame_delay ms
-        for(volatile uint32_t d = 0; d < 60000; d++); // adjust for your MCU speed
+        // simple delay loop (~frame_delay)
+        for(volatile uint32_t d = 0; d < 40000; d++); // adjust for MCU speed
     }
+
+    // Optional: hold final screen for 500ms
+    for(volatile uint32_t d = 0; d < 1000000; d++);
 }
 
 void ANIM_ProgressBar(uint8_t x, uint8_t y, uint8_t width, uint8_t height, uint8_t progress, uint8_t max, uint8_t color)
@@ -74,6 +63,50 @@ void ANIM_ProgressBar(uint8_t x, uint8_t y, uint8_t width, uint8_t height, uint8
             OLED_Draw_Pixel(x + 1 + i, y + j, color);
         }
     }
+}
+
+
+void ANIM_ProgressBar_Pro(uint8_t x, uint8_t y, uint8_t width, uint8_t height, uint8_t progress, uint8_t max, uint8_t color)
+{
+    if(progress > max) progress = max;
+
+    uint8_t fill = (width - 2) * progress / max;
+
+    // -------- Draw border --------
+    for(uint8_t i = 0; i < width; i++)
+    {
+        OLED_Draw_Pixel(x + i, y, color);               // top
+        OLED_Draw_Pixel(x + i, y + height - 1, color);  // bottom
+    }
+    for(uint8_t i = 0; i < height; i++)
+    {
+        OLED_Draw_Pixel(x, y + i, color);               // left
+        OLED_Draw_Pixel(x + width - 1, y + i, color);   // right
+    }
+
+    // -------- Rounded corners (1 px) --------
+    OLED_Draw_Pixel(x + 1, y + 1, color);                 // top-left inner
+    OLED_Draw_Pixel(x + width - 2, y + 1, color);        // top-right inner
+    OLED_Draw_Pixel(x + 1, y + height - 2, color);       // bottom-left inner
+    OLED_Draw_Pixel(x + width - 2, y + height - 2, color);// bottom-right inner
+
+    // -------- Fill bar --------
+    for(uint8_t j = 1; j < height - 1; j++)
+    {
+        for(uint8_t i = 0; i < fill; i++)
+        {
+            OLED_Draw_Pixel(x + 1 + i, y + j, color);
+        }
+    }
+
+    // -------- Percentage text --------
+    char buf[5];
+    uint8_t percent = (progress * 100) / max;
+    sprintf(buf, "%d%%", percent);
+
+    uint8_t text_x = x + (width - 6 * strlen(buf)) / 2;
+    uint8_t text_y = y + (height - 8) / 2; // assuming 5x7 font
+    OLED_Draw_String(text_x, text_y, buf, color);
 }
 
 

@@ -67,16 +67,20 @@ void I2C1_Reg_Init(void)
     }
     #endif
 
-    #ifdef I2C_SPEED_400K
-    // Fast mode (400 kHz)
-    {
-        uint32_t ccr_value = RCC_Get_APB1_Clock() / (3 * I2C_SPEED_400K); // Duty = 2
-        I2C1->CCR |= (ccr_value << I2C_CCR_CCR_Pos);
-        I2C1->TRISE = (uint32_t)((pclk1_mhz * 300) / 1000) + 1; // TRISE = 300ns
-        I2C1->CCR |= I2C_CCR_FS;      // Fast mode
-        I2C1->CCR |= I2C_CCR_DUTY;    // 50% duty cycle
-    }
-    #endif
+		#ifdef I2C_SPEED_400K
+
+			uint32_t pclk1 = RCC_Get_APB1_Clock();
+
+			uint32_t ccr_value = pclk1 / (3 * I2C_SPEED_400K);
+
+			I2C1->CCR = 0;
+			I2C1->CCR |= ccr_value;
+			I2C1->CCR |= I2C_CCR_FS;      // Fast mode
+			I2C1->CCR &= ~I2C_CCR_DUTY;   // Duty = 2
+
+			I2C1->TRISE = ((pclk1 / 1000000) * 300) / 1000 + 1;
+
+		#endif
 
     // 5. Enable I2C
     I2C1->CR1 |= I2C_CR1_PE;

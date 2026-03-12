@@ -31,6 +31,7 @@ extern uint8_t OLED_Buffer[OLED_BUFFER_SIZE];
 //------------------ low-level ------------------
 void OLED_Send_Command(uint8_t cmd);
 void OLED_Send_Data(uint8_t* data, uint16_t len);
+void OLED_Write_Page(uint8_t page, uint8_t *data);
 
 //------------------ basic ------------------
 void OLED_Init(uint16_t rf_rate);

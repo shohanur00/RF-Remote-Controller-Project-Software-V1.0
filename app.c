@@ -20,7 +20,7 @@ void my_function(void){
 			Oled_Update_Flag_Clear();
 			OLED_Clear();
 			
-			OLED_Draw_Number(40,0,number,1);
+			OLED_Draw_Number(80,0,number,1);
 			OLED_Draw_String(0,0,"Hello!",1);
 			
 			OLED_Update();
@@ -54,16 +54,20 @@ void App_Setup(void){
 
 
 void App_Main_Loop(void){
-	
-		if(Timebase_DownCounter_SS_Continuous_Expired_Event(1)){
-			GPIO_TogglePin(GPIOC,13);
-			
-			
-		}
+
+    static uint32_t execution_time = 0;
+
+    if(Timebase_DownCounter_SS_Continuous_Expired_Event(1)){
+        
+        GPIO_TogglePin(GPIOC,13);
+
+
+    }
 		
-		uint32_t execution_time = MicroTimer_Measure(Timebase_Main_Loop_Executables);
-		Debug_Tx_Parameter_NL("Exc Time:",execution_time);
-		
-		Timebase_Main_Loop_Executables();
-	
+		// Measure function execution time
+		execution_time = MicroTimer_Measure(my_function);
+
+		Debug_Tx_Parameter_NL("Exc Time:", execution_time);
+
+    Timebase_Main_Loop_Executables();
 }

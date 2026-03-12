@@ -13,6 +13,7 @@ void ANIM_Booting(uint32_t duration_ms);
 
 //------------------ progress bar ------------------
 void ANIM_ProgressBar(uint8_t x, uint8_t y, uint8_t width, uint8_t height, uint8_t progress, uint8_t max, uint8_t color);
+void ANIM_ProgressBar_Pro(uint8_t x, uint8_t y, uint8_t width, uint8_t height, uint8_t progress, uint8_t max, uint8_t color);
 
 //------------------ uploading dots ------------------
 void ANIM_UploadingDots(uint8_t x,uint8_t y,uint8_t step,uint8_t color);
