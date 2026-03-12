@@ -36,8 +36,11 @@ void App_Setup(void){
 	RCC_LSE_Clock_Config();
 	Timebase_Init(1000);
 	Debug_Init(115200);
+	Debug_Tx_Parameter_NL("Runtime:", 0);
 	I2C1_Init();
+	Debug_Tx_Parameter_NL("Run Time:", 1);
 	OLED_Init(60);
+	Debug_Tx_Parameter_NL("Run Time", 2);
   OLED_Clear();
 	ANIM_Booting(1000);
 	OLED_Clear();

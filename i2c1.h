@@ -18,13 +18,16 @@
 //#define I2C_SPEED_100K 		100000	
 #define I2C_SPEED_400K 			400000	
 
+
+extern volatile uint8_t dma_busy;
+
 // -------------------------
 // Initialization
 // -------------------------
 void I2C1_GPIO_Init(void);
 void I2C1_Reg_Init(void);
 void I2C1_Init(void);
-
+void I2C1_DMA_Init(void);
 // -------------------------
 // Bus control / Recovery
 // -------------------------
@@ -50,6 +53,9 @@ uint8_t I2C1_Write_Read(uint8_t addr,
 uint8_t I2C1_Wait_TXE(void);
 uint8_t I2C1_Wait_RXNE(void);
 
+uint8_t I2C1_DMA_Busy_Read(void);
+void I2C1_DMA_Busy_Set(void);
+void I2C1_DMA_Busy_Clear(void);
 // -------------------------
 // Register access helpers
 // -------------------------

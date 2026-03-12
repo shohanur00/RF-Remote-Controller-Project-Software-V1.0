@@ -4,6 +4,8 @@
 #include "debug.h"
 
 
+volatile uint8_t dma_busy = 0;
+
 void I2C1_GPIO_Init(void)
 {
     // 1. Enable GPIOB clock
@@ -84,6 +86,78 @@ void I2C1_Reg_Init(void)
 
     // 5. Enable I2C
     I2C1->CR1 |= I2C_CR1_PE;
+}
+
+// I2C1 + DMA1 Stream6 TX (STM32F401 example)
+void I2C1_DMA_Init(void)
+{
+    // 1?? Enable clocks
+    RCC->AHB1ENR |= RCC_AHB1ENR_DMA1EN;   // DMA1 clock
+    RCC->APB1ENR |= RCC_APB1ENR_I2C1EN;   // I2C1 clock
+
+    // 2?? Disable DMA stream before configuring
+    DMA1_Stream6->CR = 0;
+    while(DMA1_Stream6->CR & DMA_SxCR_EN); // wait until stream disabled
+
+    // 3?? Set peripheral address (I2C1 data register)
+    DMA1_Stream6->PAR = (uint32_t)&I2C1->DR;
+
+    // 4?? Select channel for I2C1 TX (Stream6, Channel1)
+    DMA1_Stream6->CR &= ~DMA_SxCR_CHSEL;
+    DMA1_Stream6->CR |= (1 << DMA_SxCR_CHSEL_Pos);
+
+    // 5?? Direction: memory -> peripheral
+    DMA1_Stream6->CR &= ~DMA_SxCR_DIR;
+    DMA1_Stream6->CR |= DMA_SxCR_DIR_0; // 01 = mem->periph
+
+    // 6?? Memory increment mode enable
+    DMA1_Stream6->CR |= DMA_SxCR_MINC;
+
+    // 7?? Peripheral & memory size = 8-bit
+    DMA1_Stream6->CR &= ~(3 << DMA_SxCR_PSIZE_Pos);
+    DMA1_Stream6->CR &= ~(3 << DMA_SxCR_MSIZE_Pos);
+
+    // 8?? Enable I2C TX DMA request
+    I2C1->CR2 |= I2C_CR2_DMAEN;
+
+    // 9?? Optional: Transfer Complete interrupt (non-blocking version)
+    //DMA1_Stream6->CR |= DMA_SxCR_TCIE;
+    //NVIC_EnableIRQ(DMA1_Stream6_IRQn);
+}
+
+
+// DMA IRQ handler
+void DMA1_Stream6_IRQHandler(void)
+{
+		Debug_Tx_Text_NL("Interrupt happen");
+    if(DMA1->HISR & DMA_HISR_TCIF6)
+    {
+        DMA1->HIFCR |= DMA_HIFCR_CTCIF6;
+        I2C1_Stop();
+        I2C1->CR1 |= I2C_CR1_STOP;        // generate STOP
+				I2C1_DMA_Busy_Clear();  // clear busy
+				Debug_Tx_Text_NL("Interrupt happen if loop");
+    }
+}
+
+
+
+// Read DMA busy status
+uint8_t I2C1_DMA_Busy_Read(void)
+{
+    return dma_busy;
+}
+
+// Set DMA busy
+void I2C1_DMA_Busy_Set(void)
+{
+    dma_busy = 1;
+}
+
+// Clear DMA busy
+void I2C1_DMA_Busy_Clear(void)
+{
+    dma_busy = 0;
 }
 
 uint8_t I2C1_Start(void)
@@ -485,7 +559,9 @@ void I2C1_Scan_Bus(void)
 void I2C1_Init(void){
 	
 	I2C1_GPIO_Init();
+	I2C1_DMA_Init();
 	I2C1_Reg_Init();
+	
 	#ifdef DEBUG_ENABLE
 		Debug_Init(115200);
 	#endif

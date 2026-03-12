@@ -1,4 +1,5 @@
 #include "oled.h"
+#include "debug.h"
 
 // OLED buffer
 uint8_t OLED_Buffer[OLED_BUFFER_SIZE];
@@ -26,6 +27,40 @@ void OLED_Send_Data(uint8_t* data, uint16_t len)
         I2C1_Write_Data(data[i]);
 
     I2C1_Stop();
+}
+
+void OLED_Send_Data_DMA(uint8_t *data, uint16_t len)
+{
+    if(I2C1_DMA_Busy_Read()) return; // busy, skip
+    I2C1_DMA_Busy_Set();
+
+    // Clear previous DMA flags
+    DMA1->HIFCR |= DMA_HIFCR_CTCIF6;
+
+    // START + Addr
+    I2C1_Start();
+    I2C1_Send_Addr(OLED_I2C_ADDR, 0);
+
+    // Control byte
+    while(!(I2C1->SR1 & I2C_SR1_TXE)); // wait until DR empty
+    I2C1->DR = 0x40;
+
+    // DMA setup
+    DMA1_Stream6->M0AR = (uint32_t)data;
+    DMA1_Stream6->NDTR = len;
+    DMA1_Stream6->CR |= DMA_SxCR_EN; // DMA starts
+
+    // ? Blocking wait for DMA complete
+    while(!(DMA1->HISR & DMA_HISR_TCIF6));
+
+    // Clear DMA flag
+    DMA1->HIFCR |= DMA_HIFCR_CTCIF6;
+
+    // Send STOP
+    I2C1_Stop();
+
+    // Clear busy flag
+    I2C1_DMA_Busy_Clear();
 }
 
 //------------------ basic ------------------
