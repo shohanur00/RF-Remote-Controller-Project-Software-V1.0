@@ -91,52 +91,48 @@ void I2C1_Reg_Init(void)
 // I2C1 + DMA1 Stream6 TX (STM32F401 example)
 void I2C1_DMA_Init(void)
 {
-    // 1?? Enable clocks
-    RCC->AHB1ENR |= RCC_AHB1ENR_DMA1EN;   // DMA1 clock
-    RCC->APB1ENR |= RCC_APB1ENR_I2C1EN;   // I2C1 clock
+    // 1. Clocks Enable
+    RCC->AHB1ENR |= RCC_AHB1ENR_DMA1EN;
+    RCC->APB1ENR |= RCC_APB1ENR_I2C1EN;
 
-    // 2?? Disable DMA stream before configuring
-    DMA1_Stream6->CR = 0;
-    while(DMA1_Stream6->CR & DMA_SxCR_EN); // wait until stream disabled
+    // 2. DMA Stream Disable & Reset
+    DMA1_Stream6->CR &= ~DMA_SxCR_EN;
+    while(DMA1_Stream6->CR & DMA_SxCR_EN);
 
-    // 3?? Set peripheral address (I2C1 data register)
+    // 3. Peripheral Address
     DMA1_Stream6->PAR = (uint32_t)&I2C1->DR;
 
-    // 4?? Select channel for I2C1 TX (Stream6, Channel1)
-    DMA1_Stream6->CR &= ~DMA_SxCR_CHSEL;
-    DMA1_Stream6->CR |= (1 << DMA_SxCR_CHSEL_Pos);
+    // 4. DMA Control Register Configuration
+    DMA1_Stream6->CR = 0; // Reset
+    DMA1_Stream6->CR |= (1 << DMA_SxCR_CHSEL_Pos); // Channel 1
+    DMA1_Stream6->CR |= DMA_SxCR_PL_1;             // High Priority
+    DMA1_Stream6->CR |= DMA_SxCR_MINC;             // Memory Increment
+    DMA1_Stream6->CR |= DMA_SxCR_DIR_0;            // Mem-to-Periph
 
-    // 5?? Direction: memory -> peripheral
-    DMA1_Stream6->CR &= ~DMA_SxCR_DIR;
-    DMA1_Stream6->CR |= DMA_SxCR_DIR_0; // 01 = mem->periph
-
-    // 6?? Memory increment mode enable
-    DMA1_Stream6->CR |= DMA_SxCR_MINC;
-
-    // 7?? Peripheral & memory size = 8-bit
-    DMA1_Stream6->CR &= ~(3 << DMA_SxCR_PSIZE_Pos);
-    DMA1_Stream6->CR &= ~(3 << DMA_SxCR_MSIZE_Pos);
-
-    // 8?? Enable I2C TX DMA request
+    // --- INTERRUPT ADDITION ---
+    DMA1_Stream6->CR |= DMA_SxCR_TCIE;             // Transfer Complete Interrupt Enable
+    
+    // 5. NVIC Configuration (Global Interrupt Enable)
+    NVIC_SetPriority(DMA1_Stream6_IRQn, 0);        // Priority 0 (Highest)
+    NVIC_EnableIRQ(DMA1_Stream6_IRQn);             // NVIC-?? DMA1 Stream 6 ????? ???
+		__enable_irq(); // Enable Global Interrupts
+    // 6. Enable I2C DMA Request
     I2C1->CR2 |= I2C_CR2_DMAEN;
-
-    // 9?? Optional: Transfer Complete interrupt (non-blocking version)
-    //DMA1_Stream6->CR |= DMA_SxCR_TCIE;
-    //NVIC_EnableIRQ(DMA1_Stream6_IRQn);
 }
 
 
 // DMA IRQ handler
 void DMA1_Stream6_IRQHandler(void)
 {
-		Debug_Tx_Text_NL("Interrupt happen");
     if(DMA1->HISR & DMA_HISR_TCIF6)
     {
         DMA1->HIFCR |= DMA_HIFCR_CTCIF6;
-        I2C1_Stop();
-        I2C1->CR1 |= I2C_CR1_STOP;        // generate STOP
-				I2C1_DMA_Busy_Clear();  // clear busy
-				Debug_Tx_Text_NL("Interrupt happen if loop");
+           
+        while (!(I2C1->SR1 & I2C_SR1_BTF)); 
+        I2C1_Stop(); 
+        
+        I2C1_DMA_Busy_Clear(); 
+        
     }
 }
 

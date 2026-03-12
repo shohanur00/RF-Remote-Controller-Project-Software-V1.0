@@ -31,38 +31,27 @@ void OLED_Send_Data(uint8_t* data, uint16_t len)
 
 void OLED_Send_Data_DMA(uint8_t *data, uint16_t len)
 {
-    if(I2C1_DMA_Busy_Read()) return; // busy, skip
-    I2C1_DMA_Busy_Set();
-
-    // Clear previous DMA flags
-    DMA1->HIFCR |= DMA_HIFCR_CTCIF6;
-
-    // START + Addr
-    I2C1_Start();
-    I2C1_Send_Addr(OLED_I2C_ADDR, 0);
-
-    // Control byte
-    while(!(I2C1->SR1 & I2C_SR1_TXE)); // wait until DR empty
-    I2C1->DR = 0x40;
-
-    // DMA setup
+		if(I2C1_DMA_Busy_Read()) return;
+		I2C1_DMA_Busy_Set();
+    // ?. ??? DMA ???????? ??? (?????? ????? ??? ??)
+    DMA1_Stream6->CR &= ~DMA_SxCR_EN;
+    while(DMA1_Stream6->CR & DMA_SxCR_EN);
+    
     DMA1_Stream6->M0AR = (uint32_t)data;
     DMA1_Stream6->NDTR = len;
-    DMA1_Stream6->CR |= DMA_SxCR_EN; // DMA starts
+    DMA1->HIFCR |= DMA_HIFCR_CTCIF6; // Clear flags
 
-    // ? Blocking wait for DMA complete
-    while(!(DMA1->HISR & DMA_HISR_TCIF6));
+    // ?. I2C START ??? Address ?????
+    if(I2C1_Start()) return;
+    if(I2C1_Send_Addr(OLED_I2C_ADDR, 0)) return;
 
-    // Clear DMA flag
-    DMA1->HIFCR |= DMA_HIFCR_CTCIF6;
+    I2C1_Write_Data(0x40); // control byte = data
+    while (!(I2C1->SR1 & I2C_SR1_TXE)); // TXE ???? ??????? ???????
 
-    // Send STOP
-    I2C1_Stop();
-
-    // Clear busy flag
-    I2C1_DMA_Busy_Clear();
+    // ?. ??? DMA ??? I2C DMA Request ????? ???? (??????)
+    I2C1->CR2 |= I2C_CR2_DMAEN;  // ??????? ??? ??? ?? ???
+    DMA1_Stream6->CR |= DMA_SxCR_EN; 
 }
-
 //------------------ basic ------------------
 void OLED_Init(uint16_t rf_rate)
 {
@@ -92,7 +81,7 @@ void OLED_Clear(void)
         OLED_Buffer[i]=0;
 }
 
-void OLED_Update(void)
+/*void OLED_Update(void)
 {
     for(uint8_t page=0; page<8; page++)
     {
@@ -101,6 +90,22 @@ void OLED_Update(void)
         OLED_Send_Command(0x10);
         OLED_Send_Data(&OLED_Buffer[page*OLED_WIDTH], OLED_WIDTH);
     }
+}*/
+
+void OLED_Update(void)
+{
+    if(I2C1_DMA_Busy_Read()) return; 
+    OLED_Send_Command(0x20); // Set Memory Addressing Mode
+    OLED_Send_Command(0x00); // 0x00 = Horizontal Addressing Mode
+
+    OLED_Send_Command(0x21); // Set Column Address
+    OLED_Send_Command(0);    // Start Column 0
+    OLED_Send_Command(127);  // End Column 127
+
+    OLED_Send_Command(0x22); // Set Page Address
+    OLED_Send_Command(0);    // Start Page 0
+    OLED_Send_Command(7);    // End Page 7
+    OLED_Send_Data_DMA(OLED_Buffer, 1024); 
 }
 
 // Partial update: update a rectangle (x0,y0) to (x1,y1)
