@@ -439,6 +439,21 @@
               <FileType>1</FileType>
               <FilePath>.\microtimer.c</FilePath>
             </File>
+            <File>
+              <FileName>robot_eye.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\robot_eye.c</FilePath>
+            </File>
+            <File>
+              <FileName>analog_read.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\analog_read.c</FilePath>
+            </File>
+            <File>
+              <FileName>adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\adc.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -493,6 +508,21 @@
               <FileName>microtimer.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\microtimer.h</FilePath>
+            </File>
+            <File>
+              <FileName>robot_eye.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\robot_eye.h</FilePath>
+            </File>
+            <File>
+              <FileName>analog_read.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\analog_read.h</FilePath>
+            </File>
+            <File>
+              <FileName>adc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\adc.h</FilePath>
             </File>
           </Files>
         </Group>
