@@ -8,6 +8,7 @@
 #include "animation.h"
 #include "microtimer.h"
 #include "robot_eye.h"
+#include "adc.h"
 
 
 int number=0,counter = 660;
@@ -40,7 +41,7 @@ void App_Setup(void){
 	OLED_Clear();
   //OLED_Draw_String(0,0,"Hello STM32!");
   MicroTimer_Init();
-	
+	ADC_Init();
 	//OLED_Update();
 	GPIO_EnableClock(GPIOC);
 	GPIO_Init(GPIOC,13,GPIO_MODE_OUTPUT,GPIO_OTYPE_PP,GPIO_NOPULL,GPIO_SPEED_LOW);
@@ -63,10 +64,12 @@ void App_Main_Loop(void){
 
     }
 		
+	
+		Debug_Tx_Parameter_NL("ADC Value:",ADC_Read_Channel(0));
 		// Measure function execution time
 		execution_time = MicroTimer_Measure(gfx_update);
 
-		Debug_Tx_Parameter_NL("Exc Time:", execution_time);
+		//Debug_Tx_Parameter_NL("Exc Time:", execution_time);
 
     Timebase_Main_Loop_Executables();
 }
