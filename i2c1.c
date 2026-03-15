@@ -127,15 +127,24 @@ void DMA1_Stream6_IRQHandler(void)
     if(DMA1->HISR & DMA_HISR_TCIF6)
     {
         DMA1->HIFCR |= DMA_HIFCR_CTCIF6;
-           
-        while (!(I2C1->SR1 & I2C_SR1_BTF)); 
-        I2C1_Stop(); 
-        
-        I2C1_DMA_Busy_Clear(); 
-        
+
+        // Disable DMA stream
+        DMA1_Stream6->CR &= ~DMA_SxCR_EN;
+        while(DMA1_Stream6->CR & DMA_SxCR_EN);
+
+        // Disable I2C DMA request
+        I2C1->CR2 &= ~I2C_CR2_DMAEN;
+
+        // Wait last byte transfer
+        while(!(I2C1->SR1 & I2C_SR1_BTF));
+
+        // Send stop
+        I2C1_Stop();
+
+        // Clear busy flag
+        I2C1_DMA_Busy_Clear();
     }
 }
-
 
 
 // Read DMA busy status

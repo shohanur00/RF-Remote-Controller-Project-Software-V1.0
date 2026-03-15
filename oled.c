@@ -79,6 +79,7 @@ void OLED_Clear(void)
 {
     for(int i=0;i<OLED_BUFFER_SIZE;i++)
         OLED_Buffer[i]=0;
+		//OLED_Update();
 }
 
 /*void OLED_Update(void)
@@ -94,18 +95,22 @@ void OLED_Clear(void)
 
 void OLED_Update(void)
 {
-    if(I2C1_DMA_Busy_Read()) return; 
-    OLED_Send_Command(0x20); // Set Memory Addressing Mode
-    OLED_Send_Command(0x00); // 0x00 = Horizontal Addressing Mode
+    if(I2C1_DMA_Busy_Read()) return;
 
-    OLED_Send_Command(0x21); // Set Column Address
-    OLED_Send_Command(0);    // Start Column 0
-    OLED_Send_Command(127);  // End Column 127
+    //I2C1_DMA_Busy_Set();
 
-    OLED_Send_Command(0x22); // Set Page Address
-    OLED_Send_Command(0);    // Start Page 0
-    OLED_Send_Command(7);    // End Page 7
-    OLED_Send_Data_DMA(OLED_Buffer, 1024); 
+    OLED_Send_Command(0x20); // Horizontal Addressing
+    OLED_Send_Command(0x00);
+
+    OLED_Send_Command(0x21); // Column range
+    OLED_Send_Command(0);
+    OLED_Send_Command(127);
+
+    OLED_Send_Command(0x22); // Page range
+    OLED_Send_Command(0);
+    OLED_Send_Command(7);
+
+    OLED_Send_Data_DMA(OLED_Buffer, OLED_BUFFER_SIZE);
 }
 
 // Partial update: update a rectangle (x0,y0) to (x1,y1)

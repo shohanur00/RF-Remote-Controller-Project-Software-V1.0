@@ -3,33 +3,38 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Tool Versions:</h2>
-IDE-Version: µVision V5.42.0.0
+IDE-Version: µVision V5.43.1.0
 Copyright (C) 2025 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: gff gfd, df, LIC=----
+License Information: e ee
+ee
+User-based license: Keil MDK Community (non-commercial free of charge)
+Valid until: Jun 1 2033. Cached until: Mar 19 2026
  
 Tool Versions:
-Toolchain:       MDK-Lite  Version: 5.42.0.0
-Toolchain Path:  C:\Users\user\AppData\Local\Keil_v5\ARM\ARMCLANG\Bin
-C Compiler:      ArmClang.exe V6.23
-Assembler:       Armasm.exe V6.23
-Linker/Locator:  ArmLink.exe V6.23
-Library Manager: ArmAr.exe V6.23
-Hex Converter:   FromElf.exe V6.23
-CPU DLL:         SARMCM3.DLL V5.42.0.0
+Toolchain:       Keil MDK Community (non-commercial free of charge  Version: 5.43.0.0
+Toolchain Path:  C:\Users\WALTON\AppData\Local\Keil_v5\ARM\ARMCLANG\Bin
+C Compiler:      ArmClang.exe V6.24
+Assembler:       Armasm.exe V6.24
+Linker/Locator:  ArmLink.exe V6.24
+Library Manager: ArmAr.exe V6.24
+Hex Converter:   FromElf.exe V6.24
+CPU DLL:         SARMCM3.DLL V5.43.0.0
 Dialog DLL:      DCM.DLL V1.17.5.0
-Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.3.0.0
+Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.3.1.0
 Dialog DLL:      TCM.DLL V1.56.6.0
  
 <h2>Project:</h2>
-E:\Software Project\RF-Remote-Controller-Project-Software-V1.0\rf_remote_controller_project.uvprojx
-Project File Date:  03/13/2026
+E:\Personal Projects\RF Remote Controller Project (Software) V1.0\rf_remote_controller_project.uvprojx
+Project File Date:  03/15/2026
 
 <h2>Output:</h2>
-*** Using Compiler 'V6.23', folder: 'C:\Users\user\AppData\Local\Keil_v5\ARM\ARMCLANG\Bin'
+*** Using Compiler 'V6.24', folder: 'C:\Users\WALTON\AppData\Local\Keil_v5\ARM\ARMCLANG\Bin'
 Rebuild target 'stm32f401rct6'
+compiling system_stm32f4xx.c...
+compiling analog_read.c...
 compiling microtimer.c...
-compiling font5x7_data.c...
-compiling main.c...
+compiling adc.c...
+compiling gpio.c...
 rcc.c(94): warning: implicit conversion from 'int' to 'uint8_t' (aka 'unsigned char') changes value from 1024 to 0 [-Wconstant-conversion]
    94 |         {1,1,1,1,2,4,8,16,64,128,256,512,1024,1024,1024,1024};
       |         ~                                               ^~~~
@@ -50,37 +55,35 @@ rcc.c(94): warning: implicit conversion from 'int' to 'uint8_t' (aka 'unsigned c
       |         ~                        ^~~
 6 warnings generated.
 compiling rcc.c...
-compiling gpio.c...
-oled.c(279): warning: format specifies type 'long' but the argument has type 'int32_t' (aka 'int') [-Wformat]
-  279 |     sprintf(buf,"%ld",num);
+compiling font5x7_data.c...
+compiling i2c1.c...
+compiling debug.c...
+compiling robot_eye.c...
+compiling main.c...
+app.c(69): warning: variable 'execution_time' set but not used [-Wunused-but-set-variable]
+   69 |     static uint32_t execution_time = 0;
+      |                     ^
+1 warning generated.
+compiling app.c...
+compiling timebase.c...
+oled.c(284): warning: format specifies type 'long' but the argument has type 'int32_t' (aka 'int') [-Wformat]
+  284 |     sprintf(buf,"%ld",num);
       |                  ~~~  ^~~
       |                  %d
-oled.c(286): warning: format specifies type 'long' but the argument has type 'int32_t' (aka 'int') [-Wformat]
-  286 |     sprintf(buf,"%ld",value);
+oled.c(291): warning: format specifies type 'long' but the argument has type 'int32_t' (aka 'int') [-Wformat]
+  291 |     sprintf(buf,"%ld",value);
       |                  ~~~  ^~~~~
       |                  %d
 2 warnings generated.
 compiling oled.c...
-app.c(58): warning: variable 'execution_time' set but not used [-Wunused-but-set-variable]
-   58 |     static uint32_t execution_time = 0;
-      |                     ^
-1 warning generated.
-compiling app.c...
-compiling debug.c...
-compiling timebase.c...
 animation.c(257): warning: result of comparison of constant 360 with expression of type 'uint8_t' (aka 'unsigned char') is always false [-Wtautological-constant-out-of-range-compare]
   257 |     if(angle >= 360) angle = 0;
       |        ~~~~~ ^  ~~~
 1 warning generated.
 compiling animation.c...
-compiling i2c1.c...
-compiling analog_read.c...
-compiling robot_eye.c...
-compiling adc.c...
 assembling startup_stm32f401xc.s...
-compiling system_stm32f4xx.c...
 linking...
-Program Size: Code=10666 RO-data=494 RW-data=0 ZI-data=3608  
+Program Size: Code=16448 RO-data=1524 RW-data=0 ZI-data=3616  
 ".\Objects\rf_remote_controller_project.axf" - 0 Error(s), 10 Warning(s).
 
 <h2>Software Packages used:</h2>
@@ -99,8 +102,8 @@ Package Vendor: Keil
 
 <h2>Collection of Component include folders:</h2>
   ./RTE/_stm32f401rct6
-  C:/Users/user/AppData/Local/Arm/Packs/ARM/CMSIS/6.2.0/CMSIS/Core/Include
-  C:/Users/user/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include
+  C:/Users/WALTON/AppData/Local/Arm/Packs/ARM/CMSIS/6.2.0/CMSIS/Core/Include
+  C:/Users/WALTON/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include
 
 <h2>Collection of Component Files used:</h2>
 
@@ -112,7 +115,7 @@ Package Vendor: Keil
       Source file:   MDK/Device/Source/ARM/STM32F401xx_OPT.s
       Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/arm/startup_stm32f401xc.s
       Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/system_stm32f4xx.c
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>

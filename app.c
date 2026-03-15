@@ -12,16 +12,27 @@
 
 
 int number=0,counter = 660;
+uint16_t adc_val[4] = {0};
 
 
-void gfx_update(void){
-		if(Oled_Update_Flag_Read()){
-			//OLED_Clear();
-			RobotEye_Task();
-			//Graphics Function
-			OLED_Update();
-		}
-	
+void gfx_update(void)
+{
+    if(Oled_Update_Flag_Read())
+    {
+        Oled_Update_Flag_Clear();   // flag clear
+
+        OLED_Clear();
+
+				OLED_Draw_String(0,0,"Right X:",1);
+        OLED_Draw_Number(50,0,adc_val[0],1);
+				OLED_Draw_String(0,10,"Right Y:",1);
+        OLED_Draw_Number(50,10,adc_val[1],1);
+				OLED_Draw_String(0,20,"Left X:",1);
+        OLED_Draw_Number(50,20,adc_val[3],1);
+				OLED_Draw_String(0,30,"Left Y:",1);
+        OLED_Draw_Number(50,30,adc_val[2],1);	
+				OLED_Update();
+    }
 }
 
 
@@ -31,11 +42,11 @@ void App_Setup(void){
 	RCC_LSE_Clock_Config();
 	Timebase_Init(1000);
 	Debug_Init(115200);
-	Debug_Tx_Parameter_NL("Runtime:", 0);
+	//Debug_Tx_Parameter_NL("Runtime:", 0);
 	I2C1_Init();
-	Debug_Tx_Parameter_NL("Run Time:", 1);
+	//Debug_Tx_Parameter_NL("Run Time:", 1);
 	OLED_Init(30);
-	Debug_Tx_Parameter_NL("Run Time", 2);
+	//Debug_Tx_Parameter_NL("Run Time", 2);
   OLED_Clear();
 	//ANIM_Booting(1000);
 	OLED_Clear();
@@ -45,7 +56,7 @@ void App_Setup(void){
 	//OLED_Update();
 	GPIO_EnableClock(GPIOC);
 	GPIO_Init(GPIOC,13,GPIO_MODE_OUTPUT,GPIO_OTYPE_PP,GPIO_NOPULL,GPIO_SPEED_LOW);
-	RobotEye_Init();
+	//RobotEye_Init();
 	Timebase_DownCounter_SS_Set_Securely(0,10);
 	Timebase_DownCounter_SS_Set_Securely(1,500);
 	Timebase_DownCounter_SS_Set_Securely(2,2000);
@@ -60,12 +71,17 @@ void App_Main_Loop(void){
     if(Timebase_DownCounter_SS_Continuous_Expired_Event(1)){
         
         GPIO_TogglePin(GPIOC,13);
-
+				OLED_Clear();
+				//OLED_Draw_String(50,0,"Rmn",1);
+				//OLED_Update();
 
     }
 		
-	
-		Debug_Tx_Parameter_NL("ADC Value:",ADC_Read_Channel(0));
+		adc_val[0] = ADC_Read_Channel(0);
+		adc_val[1] = ADC_Read_Channel(1);
+		adc_val[2] = ADC_Read_Channel(4);
+		adc_val[3] = ADC_Read_Channel(5);
+		//Debug_Tx_Parameter_NL("ADC Value:",ADC_Read_Channel(1));
 		// Measure function execution time
 		execution_time = MicroTimer_Measure(gfx_update);
 
