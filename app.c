@@ -79,7 +79,7 @@ void App_Main_Loop(void){
     if(Timebase_DownCounter_SS_Continuous_Expired_Event(1)){
         
         GPIO_TogglePin(GPIOC,13);
-				OLED_Clear();
+				//OLED_Clear();
 				//OLED_Draw_String(50,0,"Rmn",1);
 				//OLED_Update();
 
