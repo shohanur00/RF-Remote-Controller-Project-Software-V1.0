@@ -30,11 +30,19 @@ void gfx_update(void)
 				OLED_Draw_String(0,20,"Left X:",1);
         OLED_Draw_Number(50,20,adc_val[3],1);
 				OLED_Draw_String(0,30,"Left Y:",1);
-        OLED_Draw_Number(50,30,adc_val[2],1);	
+        OLED_Draw_Number(50,30,adc_val[2],1);
 				OLED_Update();
     }
 }
 
+
+
+void adc_read(void){
+		adc_val[0] = ADC_Read_Channel(0);
+		adc_val[1] = ADC_Read_Channel(1);
+		adc_val[2] = ADC_Read_Channel(2);
+		adc_val[3] = ADC_Read_Channel(3);
+}
 
 void App_Setup(void){
 	
@@ -77,15 +85,13 @@ void App_Main_Loop(void){
 
     }
 		
-		adc_val[0] = ADC_Read_Channel(0);
-		adc_val[1] = ADC_Read_Channel(1);
-		adc_val[2] = ADC_Read_Channel(4);
-		adc_val[3] = ADC_Read_Channel(5);
+
 		//Debug_Tx_Parameter_NL("ADC Value:",ADC_Read_Channel(1));
 		// Measure function execution time
-		execution_time = MicroTimer_Measure(gfx_update);
+		gfx_update();
+		execution_time = MicroTimer_Measure(adc_read);
 
-		//Debug_Tx_Parameter_NL("Exc Time:", execution_time);
+		Debug_Tx_Parameter_NL("Exc Time:", execution_time);
 
     Timebase_Main_Loop_Executables();
 }
